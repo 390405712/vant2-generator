@@ -39,6 +39,11 @@ export default {
     },
   },
   render(h) {
+    if (typeof window == "undefined") {
+      global.h = this.$createElement
+    } else {
+      window.h = this.$createElement
+    }
     const renderColumn = (tableOption) => {
       return tableOption.map((item) => {
         if (['selection', 'index', 'expand'].includes(item.type)) {
@@ -54,8 +59,8 @@ export default {
             default: (scope) => this.$scopedSlots[item.prop]
               ? this.$scopedSlots[item.prop]?.({ $index: scope.$index, row: scope.row })
               : item.formatter
-                ? item.formatter({ $index: scope.$index, row: scope.row }) ?? '-'
-                : scope.row[item.prop] ?? '-',
+                ? (item.formatter({ $index: scope.$index, row: scope.row }) || '-')
+                : (scope.row[item.prop] || '-'),
             ...item?.slot
           }}>
           {item.children && Array.isArray(item.children) && item.children.length > 0 ? renderColumn(item.children) : ''}

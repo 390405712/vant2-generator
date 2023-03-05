@@ -1,6 +1,6 @@
 {
   "name": "element-ui-generator",
-  "version": "1.0.0",
+  "version": "1.0.6",
   "description": "基于element-ui封装的表格、表单生成器",
   "type": "module",
   "main": "./dist/index.js",

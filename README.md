@@ -6,45 +6,56 @@
 
 - **步骤 1：** 安装依赖
 
-  ```bash
-    # 选择一个你喜欢的包管理器
+```bash
+# 选择一个你喜欢的包管理器
 
-    # NPM
-    $ npm install element-ui element-ui-generator --save
+# NPM
+$ npm install element-ui element-ui-generator --save
 
-    # Yarn
-    $ yarn add element-ui element-ui-generator
+# Yarn
+$ yarn add element-ui element-ui-generator
 
-    # pnpm
-    $ pnpm install element-ui element-ui-generator
-  ```
+# pnpm
+$ pnpm install element-ui element-ui-generator
+```
 
 - **步骤 2：** 引入依赖
 
-    全局注册
-    ```ts
-    import App from './App.vue'
+全局注册
+```ts
+import Vue from 'vue';
+import App from './App.vue'
 
-    import ElementPlus from 'element-ui'
-    import 'element-ui/dist/index.css'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
-    import { FormGenerator, TableGenerator } from 'element-ui-generator'
+import { FormGenerator, TableGenerator } from 'element-ui-generator'
 
-    const app = createApp(App)
 
-    app.component('FormGenerator', FormGenerator);
-    app.component('TableGenerator', TableGenerator);
+Vue.component('FormGenerator', FormGenerator);
+Vue.component('TableGenerator', TableGenerator);
 
-    app.use(ElementPlus).mount('#app')
-    ```
-    按需引入
-    ```vue
-    <template>
-      <FormGenerator :model="form" :formOption="formOption" />
-      <TableGenerator :data="tableData":tableOption="tableOption" />
-    </template>
-    <script lang="tsx" setup>
-    import { FormGenerator,TableGenerator } from 'element-ui-generator'
-    // ...
-    </script>
-    ```
+Vue.use(ElementUI)
+
+new Vue({
+  render: h => h(App)
+}).$mount('#app')
+
+```
+
+按需引入
+```vue
+<template>
+  <FormGenerator :model="form" :formOption="formOption" />
+  <TableGenerator :data="tableData":tableOption="tableOption" />
+</template>
+<script>
+
+import { FormGenerator,TableGenerator } from 'element-ui-generator'
+
+export default{
+  components:{FormGenerator,TableGenerator },
+  // ...
+}
+</script>
+```

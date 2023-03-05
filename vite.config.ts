@@ -22,5 +22,10 @@ export default defineConfig({
       },
     },
   },
-  plugins: [createVuePlugin({ jsx: true }), VitePluginStyleInject(),],
+  plugins: [createVuePlugin({
+    jsx: true,
+    // jsxOptions: {
+    //   compositionAPI: true, injectH: true
+    // }
+  }), VitePluginStyleInject(),],
 });

@@ -49,6 +49,11 @@ export default {
     if (this.$attrs.formOption.length >= (this.column - 2) && this.$attrs?.type === 'search') this.setShow(false)
   },
   render(h) {
+    if (typeof window == "undefined") {
+      global.h = this.$createElement
+    } else {
+      window.h = this.$createElement
+    }
     const renderForm = (_attrs) => {
       _attrs.formOption.forEach((i) => {
         if (i?.formItem?.rules && !i?.formItem?.rules?.hasOwnProperty('trigger')) i.formItem.rules.trigger = 'blur'

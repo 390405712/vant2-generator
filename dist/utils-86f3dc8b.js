@@ -44,7 +44,7 @@ const c = (o, r, n, s) => {
   if (typeof e.formItem.rules.validator == "function")
     e.formItem.rules.validator(o, r).then(() => n()).catch((t) => {
       var u;
-      return n(new Error(t !== "err" ? t : ((u = e == null ? void 0 : e.formItem.rules) == null ? void 0 : u.message) ?? ""));
+      return n(new Error(t !== "err" ? t : ((u = e == null ? void 0 : e.formItem.rules) == null ? void 0 : u.message) || ""));
     });
   else
     return e.formItem.rules.validator.test(r) ? Promise.resolve() : Promise.reject(e.formItem.rules.message);
@@ -53,7 +53,7 @@ const c = (o, r, n, s) => {
   return o.forEach((s) => {
     var i, t;
     const e = typeof s == "string" ? s : s.formItem.prop;
-    r.includes(e) || (n[e] = [{ required: !0, validator: m, trigger: ((t = (i = s.formItem) == null ? void 0 : i.rules) == null ? void 0 : t.trigger) ?? "blur", formOption: o }]);
+    r.includes(e) || (n[e] = [{ required: !0, validator: m, trigger: ((t = (i = s.formItem) == null ? void 0 : i.rules) == null ? void 0 : t.trigger) || "blur", formOption: o }]);
   }), n;
 }, g = {
   checkIphoneNum: (o, r) => r ? /(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/.test(r) ? Promise.resolve() : Promise.reject("手机格式有误") : Promise.reject("请输入手机号")
@@ -71,4 +71,4 @@ export {
   c as g,
   p as u
 };
-//# sourceMappingURL=utils-9d833f48.js.map
+//# sourceMappingURL=utils-86f3dc8b.js.map
