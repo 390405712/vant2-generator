@@ -3,32 +3,32 @@ export default {
   name: 'TableGenerator',
   data() {
     return {
-      loading: null,
+      loadingInstance: null,
       el: new Date().getTime(),
       show: false,
       width: 0
     }
   },
   watch: {
-    loading: {
+    '$attrs.loading': {
       handler: function (val) {
         if (val) {
-          this.loading = ElLoading.service({
+          this.loadingInstance = ElLoading.service({
             target: `.el-table-${this.el}`
           })
         } else {
-          this.loading?.close()
+          this.loadingInstance?.close()
         }
       },
       immediate: true
     },
-    'this.$attrs.data': {
+    '$attrs.data': {
       handler: function (val) {
-        if (!this.$slots?.operation || val.length === 0) return this.show = true
+        if (!this.$scopedSlots?.operation || val.length === 0) return this.show = true
         this.show = false
-        setTimeout(() => {
+        this.$nextTick(() => {
           let w = 0
-          document.querySelectorAll < HTMLDivElement > ('.content-wrapper-width').forEach((i) => {
+          document.querySelectorAll('.content-wrapper-width').forEach((i) => {
             if (i.offsetWidth > w) w = i.offsetWidth
           })
           this.width = w > 0 ? w + 32 : 'auto'
@@ -68,7 +68,6 @@ export default {
       })
     }
     const renderTable = () => {
-      console.log(this);
       return (
         <ElTable
           stripe={true}

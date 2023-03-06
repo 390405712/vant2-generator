@@ -98,18 +98,7 @@ export default {
     const renderControl = (formOption, _attrs) => {
       switch (formOption.type) {
         case 'input':
-          return <ElInput clearable={true} maxlength={30} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}
-          // {...{
-          //   scopedSlots: {
-          //     prepend: () => (<i class="el-input__icon el-icon-date"></i>),
-          //     append: () => (<i class="el-input__icon el-icon-search"></i>),
-          //   }
-          // }}
-          // v-slot={{
-          //   prepend: () => (<i class="el-input__icon el-icon-date"></i>),
-          //   append: () => (<i class="el-input__icon el-icon-search"></i>),
-          // }}
-          >
+          return <ElInput clearable={true} maxlength={30} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
             {Object.keys(formOption?.control?.slot || []).map(i => <template slot={i}>{formOption?.control?.slot[i]({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })}</template>)}
           </ElInput>
           break;
@@ -125,14 +114,8 @@ export default {
             ))}
           </ElSelect>
           break;
-        // case 'tree-select':
-        //   return <ElTreeSelect clearable={true} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]} >
-        //     {Object.keys(formOption?.control?.slot || []).map(i => <template slot={i}>{formOption?.control?.slot[i]()}</template>)}
-        //   </ElTreeSelect>
-        //   break;
         case 'cascader':
           return <ElCascader {...this.getAttrAndEvent(formOption?.control)} scopedSlots={formOption?.control?.slot} v-model={_attrs.model[formOption.formItem.prop]} >
-            {/* {Object.keys(formOption?.control?.slot || []).map(i => <template slot={i}>{formOption?.control?.slot[i]()}</template>)} */}
           </ElCascader>
           break;
         case 'radio':
