@@ -47,7 +47,7 @@ const c = (o, r, n, s) => {
       return n(new Error(t !== "err" ? t : ((u = e == null ? void 0 : e.formItem.rules) == null ? void 0 : u.message) || ""));
     });
   else
-    return e.formItem.rules.validator.test(r) ? Promise.resolve() : Promise.reject(e.formItem.rules.message);
+    return e.formItem.rules.validator.test(r) ? Promise.resolve() : Promise.reject(e.formItem.rules.message || "格式有误");
 }, a = (o, r = []) => {
   let n = {};
   return o.forEach((s) => {
@@ -71,4 +71,4 @@ export {
   c as g,
   p as u
 };
-//# sourceMappingURL=utils-86f3dc8b.js.map
+//# sourceMappingURL=utils-2447b7ec.js.map
