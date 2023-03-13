@@ -79,7 +79,7 @@ export default {
                       _attrs?.type === 'dialog'
                         ? <ElButton onClick={(e) => {
                           const getDialogEl = (el) => {
-                            if (el.parentElement.className !== 'el-dialog') return getDialogEl(el.parentElement)
+                            if (el.parentElement.classList.value.split(' ').includes('el-dialog')) return getDialogEl(el.parentElement)
                             return el.parentElement
                           }
                           getDialogEl(e.target).querySelector('.el-dialog__headerbtn')?.click?.()
