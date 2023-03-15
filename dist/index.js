@@ -1,4 +1,4 @@
-(function(){ try {var elementStyle = document.createElement('style'); elementStyle.appendChild(document.createTextNode(".FormGenerator.FormGeneratorSearch{display:flex;justify-content:flex-start;align-items:flex-start;flex-wrap:wrap;flex-direction:row;gap:15px 10px}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item{width:calc(25% - 8px);margin:0;display:flex;flex-wrap:nowrap}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item .el-form-item__content{flex-grow:1}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item .el-form-item__label-wrap{margin:0!important;flex-shrink:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.searchItem{display:flex;justify-content:flex-end;flex-wrap:nowrap}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.searchItem .el-form-item__content{flex-grow:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem{margin:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem .el-form-item__label-wrap{display:none}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem .el-form-item__content>div{display:flex;flex-wrap:nowrap}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline){padding-bottom:45px}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem{margin:0;height:64px;position:absolute;bottom:0;right:0;width:100%;box-shadow:1px 2px 10px #9ab7ff80;z-index:1;z-index:11;padding:0 16px;box-sizing:border-box}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem .el-form-item__content{height:100%}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem .el-form-item__content>div{display:flex;justify-content:flex-end;align-items:center;flex-wrap:nowrap;height:100%}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .el-form-item__content>div{width:100%}.FormGenerator .searchItem{flex-grow:1;flex-shrink:0}.FormGenerator .searchItem .el-form-item__content{justify-content:flex-end}.FormGenerator .el-select,.FormGenerator .el-input,.FormGenerator .el-cascader,.FormGenerator .el-date-editor,.FormGenerator .el-date-editor.el-input,.FormGenerator .el-date-editor.el-input__wrapper,.TableGenerator .el-scrollbar__view{width:100%}")); document.head.appendChild(elementStyle);} catch(e) {console.error('vite-plugin-css-injected-by-js', e);} })();import { Loading as W, Table as M, Empty as L, TableColumn as k, Form as N, FormItem as C, Button as w, Upload as R, Switch as V, TimePicker as q, DatePicker as U, CheckboxGroup as P, CheckboxButton as J, Checkbox as K, RadioGroup as B, RadioButton as z, Radio as H, Cascader as Q, Select as X, Option as Y, InputNumber as Z, Input as I } from "element-ui";
+(function(){ try {var elementStyle = document.createElement('style'); elementStyle.appendChild(document.createTextNode(".FormGenerator.FormGeneratorSearch{display:flex;justify-content:flex-start;align-items:flex-start;flex-wrap:wrap;flex-direction:row;gap:15px 10px}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item{width:calc(25% - 8px);margin:0;display:flex;flex-wrap:nowrap}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item .el-form-item__content{flex-grow:1}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item .el-form-item__label-wrap{margin:0!important;flex-shrink:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.searchItem{display:flex;justify-content:flex-end;flex-wrap:nowrap}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.searchItem .el-form-item__content{flex-grow:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem{margin:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem .el-form-item__label-wrap{display:none}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem .el-form-item__content>div{display:flex;flex-wrap:nowrap}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline){padding-bottom:45px}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem{margin:0;height:64px;position:absolute;bottom:0;right:0;width:100%;box-shadow:1px 2px 10px #9ab7ff80;z-index:1;z-index:11;padding:0 16px;box-sizing:border-box}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem .el-form-item__content{height:100%}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem .el-form-item__content>div{display:flex;justify-content:flex-end;align-items:center;flex-wrap:nowrap;height:100%}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .el-form-item__content>div{width:100%}.FormGenerator .searchItem{flex-grow:1;flex-shrink:0}.FormGenerator .searchItem .el-form-item__content{justify-content:flex-end}.FormGenerator .el-select,.FormGenerator .el-input,.FormGenerator .el-cascader,.FormGenerator .el-date-editor,.FormGenerator .el-date-editor.el-input,.FormGenerator .el-date-editor.el-input__wrapper,.TableGenerator .el-scrollbar__view{width:100%}")); document.head.appendChild(elementStyle);} catch(e) {console.error('vite-plugin-css-injected-by-js', e);} })();import { Loading as W, Table as C, Empty as L, TableColumn as k, Form as N, FormItem as i, Button as w, Upload as R, Switch as V, TimePicker as q, DatePicker as U, CheckboxGroup as P, CheckboxButton as J, Checkbox as K, RadioGroup as B, RadioButton as z, Radio as H, Cascader as Q, Select as X, Option as Y, InputNumber as Z, Input as I } from "element-ui";
 import { u as re } from "./utils-e46d3a1e.js";
 const le = {
   name: "TableGenerator",
@@ -65,7 +65,7 @@ const le = {
       }
     }, [a.children && Array.isArray(a.children) && a.children.length > 0 ? r(a.children) : ""])), u = () => {
       var e;
-      return s(M, {
+      return s(C, {
         attrs: {
           stripe: !0,
           ...this.$attrs
@@ -100,7 +100,7 @@ const le = {
           }
         }
       }) : ""]);
-    }, t = () => s(M, {
+    }, t = () => s(C, {
       attrs: {
         ...this.$attrs
       },
@@ -138,7 +138,7 @@ function b() {
     return s;
   }, b.apply(this, arguments);
 }
-var m = ["attrs", "props", "domProps"], p = ["class", "style", "directives"], _ = ["on", "nativeOn"], f = function(s) {
+var m = ["attrs", "props", "domProps"], p = ["class", "style", "directives"], f = ["on", "nativeOn"], _ = function(s) {
   return s.reduce(function(r, u) {
     for (var t in u)
       if (!r[t])
@@ -148,7 +148,7 @@ var m = ["attrs", "props", "domProps"], p = ["class", "style", "directives"], _ 
       else if (p.indexOf(t) !== -1) {
         var e = r[t] instanceof Array ? r[t] : [r[t]], a = u[t] instanceof Array ? u[t] : [u[t]];
         r[t] = [].concat(e, a);
-      } else if (_.indexOf(t) !== -1)
+      } else if (f.indexOf(t) !== -1)
         for (var d in u[t])
           if (r[t][d]) {
             var y = r[t][d] instanceof Array ? r[t][d] : [r[t][d]], g = u[t][d] instanceof Array ? u[t][d] : [u[t][d]];
@@ -166,12 +166,11 @@ var m = ["attrs", "props", "domProps"], p = ["class", "style", "directives"], _ 
   return function() {
     s && s.apply(this, arguments), r && r.apply(this, arguments);
   };
-}, h = f;
+}, h = _;
 const se = {
   name: "FormGenerator",
   data() {
     return {
-      form: {},
       more: !1,
       column: 0
     };
@@ -229,13 +228,13 @@ const se = {
         ref: "FormGenerator"
       }, [e.formOption.map((d) => {
         if (!(d.hasOwnProperty("show") && d.show === !1))
-          return s(C, {
+          return s(i, {
             key: d.formItem.prop,
             attrs: {
               ...d.formItem
             }
           }, [u(d, e)]);
-      }), e.disabled === !0 || e.noFooter || !this.$listeners.submit ? "" : s(C, {
+      }), e.disabled === !0 || e.noFooter || !this.$listeners.submit ? "" : s(i, {
         style: e.inline === !0 ? {
           width: `calc${100 / this.column}% - 8px`
         } : "",
@@ -259,10 +258,11 @@ const se = {
         slot: "label"
       })])]);
     }, u = (e, a) => {
-      var d, y, g, $, v, n, A, E, x, F, S, i, G, D, j;
+      var d, y, g, $, v, A, E, n, x, F, S, G, D, j, T;
       switch (e.type) {
         case "input":
           return s(I, h([{
+            ref: e.formItem.prop,
             attrs: {
               clearable: !0,
               maxlength: 30
@@ -285,6 +285,7 @@ const se = {
           })]);
         case "input-number":
           return s(Z, h([{
+            ref: e.formItem.prop,
             attrs: {
               min: 0,
               max: 100
@@ -299,6 +300,7 @@ const se = {
           }]));
         case "select":
           return s(X, h([{
+            ref: e.formItem.prop,
             props: {
               reserveKeyword: !1
             },
@@ -318,7 +320,9 @@ const se = {
             slot: c
           }, [l == null ? void 0 : l.slot[c]()]))]))]);
         case "cascader":
-          return s(Q, h([{}, this.getAttrAndEvent(e == null ? void 0 : e.control), {
+          return s(Q, h([{
+            ref: e.formItem.prop
+          }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             scopedSlots: (g = e == null ? void 0 : e.control) == null ? void 0 : g.slot,
             model: {
               value: a.model[e.formItem.prop],
@@ -328,7 +332,9 @@ const se = {
             }
           }]));
         case "radio":
-          return s(B, h([{}, this.getAttrAndEvent(e == null ? void 0 : e.control), {
+          return s(B, h([{
+            ref: e.formItem.prop
+          }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
               value: a.model[e.formItem.prop],
               callback: (l) => {
@@ -344,7 +350,9 @@ const se = {
             slot: c
           }, [l == null ? void 0 : l.slot[c]()])), l.label]))]);
         case "radio-button":
-          return s(B, h([{}, this.getAttrAndEvent(e == null ? void 0 : e.control), {
+          return s(B, h([{
+            ref: e.formItem.prop
+          }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
               value: a.model[e.formItem.prop],
               callback: (l) => {
@@ -360,14 +368,16 @@ const se = {
             slot: c
           }, [l == null ? void 0 : l.slot[c]()])), l.label]))]);
         case "checkbox":
-          return s(P, h([{}, this.getAttrAndEvent(e == null ? void 0 : e.control), {
+          return s(P, h([{
+            ref: e.formItem.prop
+          }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
               value: a.model[e.formItem.prop],
               callback: (l) => {
                 this.$set(a.model, e.formItem.prop, l);
               }
             }
-          }]), [(n = e == null ? void 0 : e.control) == null ? void 0 : n.option.map((l) => s(K, h([{}, this.getAttrAndEvent(l), {
+          }]), [(A = e == null ? void 0 : e.control) == null ? void 0 : A.option.map((l) => s(K, h([{}, this.getAttrAndEvent(l), {
             attrs: {
               label: l.value
             },
@@ -376,14 +386,16 @@ const se = {
             slot: c
           }, [l == null ? void 0 : l.slot[c]()])), l.label]))]);
         case "checkbox-button":
-          return s(P, h([{}, this.getAttrAndEvent(e == null ? void 0 : e.control), {
+          return s(P, h([{
+            ref: e.formItem.prop
+          }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
               value: a.model[e.formItem.prop],
               callback: (l) => {
                 this.$set(a.model, e.formItem.prop, l);
               }
             }
-          }]), [(A = e == null ? void 0 : e.control) == null ? void 0 : A.option.map((l) => s(J, h([{}, this.getAttrAndEvent(l), {
+          }]), [(E = e == null ? void 0 : e.control) == null ? void 0 : E.option.map((l) => s(J, h([{}, this.getAttrAndEvent(l), {
             attrs: {
               label: l.value
             },
@@ -392,17 +404,18 @@ const se = {
             slot: c
           }, [l == null ? void 0 : l.slot[c]()])), l.label]))]);
         case "datetime":
-          const T = {
+          const M = {
             datetimerange: "yyyy-MM-DD hh:mm:ss",
             daterange: "yyyy-MM-DD",
             datetime: "yyyy-MM-DD hh:mm:ss",
             date: "yyyy-MM-DD"
-          }[((E = e == null ? void 0 : e.control) == null ? void 0 : E.type) || "date"];
+          }[((n = e == null ? void 0 : e.control) == null ? void 0 : n.type) || "date"];
           return s(U, h([{
+            ref: e.formItem.prop,
             attrs: {
               clearable: !0,
-              format: T,
-              "value-format": T
+              format: M,
+              "value-format": M
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
@@ -419,6 +432,7 @@ const se = {
           })]);
         case "time":
           return s(q, h([{
+            ref: e.formItem.prop,
             attrs: {
               clearable: !0
             }
@@ -436,7 +450,9 @@ const se = {
             }, [(c = e == null ? void 0 : e.control) == null ? void 0 : c.slot[l]()]);
           })]);
         case "switch":
-          return s(V, h([{}, this.getAttrAndEvent(e == null ? void 0 : e.control), {
+          return s(V, h([{
+            ref: e.formItem.prop
+          }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
               value: a.model[e.formItem.prop],
               callback: (l) => {
@@ -451,6 +467,7 @@ const se = {
           })]);
         case "upload":
           return s(R, h([{
+            ref: e.formItem.prop,
             attrs: {
               action: ""
             }
@@ -460,12 +477,12 @@ const se = {
               value: a.model[e.formItem.prop],
               arg: "file-list"
             }]
-          }]), [Object.keys(((i = e == null ? void 0 : e.control) == null ? void 0 : i.slot) || []).map((l) => {
+          }]), [Object.keys(((G = e == null ? void 0 : e.control) == null ? void 0 : G.slot) || []).map((l) => {
             var c;
             return s("template", {
               slot: l
             }, [(c = e == null ? void 0 : e.control) == null ? void 0 : c.slot[l]()]);
-          }), Object.keys(((G = e == null ? void 0 : e.control) == null ? void 0 : G.slot) || []).includes("default") ? "" : s("template", {
+          }), Object.keys(((D = e == null ? void 0 : e.control) == null ? void 0 : D.slot) || []).includes("default") ? "" : s("template", {
             slot: "default"
           }, [s(w, {
             attrs: {
@@ -475,7 +492,7 @@ const se = {
         case "txt":
           return a.model[e.formItem.prop];
         case "slot":
-          return (j = (D = this.$scopedSlots)[e.formItem.prop]) == null ? void 0 : j.call(D, {
+          return (T = (j = this.$scopedSlots)[e.formItem.prop]) == null ? void 0 : T.call(j, {
             form: a.model,
             data: a.model[e.formItem.prop]
           });
