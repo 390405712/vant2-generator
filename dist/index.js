@@ -41,9 +41,9 @@ const he = {
         type: t.type,
         ...t
       }
-    }, [Object.keys((t == null ? void 0 : t.slot) || []).map((a) => s("template", {
+    }, [Object.keys((t == null ? void 0 : t.slots) || []).map((a) => s("template", {
       slot: a
-    }, [t == null ? void 0 : t.slot[a]()]))]) : s(w, {
+    }, [t == null ? void 0 : t.slots[a]()]))]) : s(w, {
       attrs: {
         "show-overflow-tooltip": !0,
         align: "left",
@@ -60,7 +60,7 @@ const he = {
             row: a.row
           }) || "-" : a.row[t.prop] || "-";
         },
-        ...t == null ? void 0 : t.slot
+        ...t == null ? void 0 : t.slots
       }
     }, [t.children && Array.isArray(t.children) && t.children.length > 0 ? d(t.children) : ""])), u = () => {
       var e;

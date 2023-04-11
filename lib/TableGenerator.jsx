@@ -48,7 +48,7 @@ export default {
       return tableOption.map((item) => {
         if (['selection', 'index', 'expand'].includes(item.type)) {
           return <ElTableColumn type={item.type} {...{ attrs: item }}>
-            {Object.keys(item?.slot || []).map(i => <template slot={i}>{item?.slot[i]()}</template>)}
+            {Object.keys(item?.slots || []).map(i => <template slot={i}>{item?.slots[i]()}</template>)}
           </ElTableColumn>
         }
         return <ElTableColumn
@@ -61,7 +61,7 @@ export default {
               : item.formatter
                 ? (item.formatter({ $index: scope.$index, row: scope.row }) || '-')
                 : (scope.row[item.prop] || '-'),
-            ...item?.slot
+            ...item?.slots
           }}>
           {item.children && Array.isArray(item.children) && item.children.length > 0 ? renderColumn(item.children) : ''}
         </ElTableColumn>
