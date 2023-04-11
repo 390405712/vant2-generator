@@ -199,8 +199,8 @@ export default {
           )
           break;
         case 'slot':
-          if(this.$scopedSlots[formOption.formItem.prop]) return this.$scopedSlots[formOption.formItem.prop]?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })
-          if(formOption?.slots?.default) return formOption.slots.default?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })
+          if (formOption?.control?.slots?.default && typeof formOption?.control?.slots?.default === 'function') return formOption?.control?.slots.default?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })
+          if (this.$scopedSlots[formOption.formItem.prop]) return this.$scopedSlots[formOption.formItem.prop]?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })
           return _attrs.model[formOption.formItem.prop]
           break;
       }
