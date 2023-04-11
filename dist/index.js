@@ -1,5 +1,5 @@
-(function(){ try {var elementStyle = document.createElement('style'); elementStyle.appendChild(document.createTextNode(".FormGenerator.FormGeneratorSearch{display:flex;justify-content:flex-start;align-items:flex-start;flex-wrap:wrap;flex-direction:row;gap:15px 10px}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item{width:calc(25% - 8px);margin:0;display:flex;flex-wrap:nowrap}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item .el-form-item__content{flex-grow:1}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item .el-form-item__label-wrap{margin:0!important;flex-shrink:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.searchItem{display:flex;justify-content:flex-end;flex-wrap:nowrap}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.searchItem .el-form-item__content{flex-grow:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem{margin:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem .el-form-item__label-wrap{display:none}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem .el-form-item__content>div{display:flex;flex-wrap:nowrap}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline){padding-bottom:45px}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem{margin:0;height:64px;position:absolute;bottom:0;right:0;width:100%;box-shadow:1px 2px 10px #9ab7ff80;z-index:1;z-index:11;padding:0 16px;box-sizing:border-box}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem .el-form-item__content{height:100%}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem .el-form-item__content>div{display:flex;justify-content:flex-end;align-items:center;flex-wrap:nowrap;height:100%}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .el-form-item__content>div{width:100%}.FormGenerator .searchItem{flex-grow:1;flex-shrink:0}.FormGenerator .searchItem .el-form-item__content{justify-content:flex-end}.FormGenerator .el-select,.FormGenerator .el-input,.FormGenerator .el-cascader,.FormGenerator .el-date-editor,.FormGenerator .el-date-editor.el-input,.FormGenerator .el-date-editor.el-input__wrapper,.TableGenerator .el-scrollbar__view{width:100%}")); document.head.appendChild(elementStyle);} catch(e) {console.error('vite-plugin-css-injected-by-js', e);} })();import { Loading as B, Table as C, Empty as L, TableColumn as w, Form as W, FormItem as o, Button as v, Upload as N, Switch as f, TimePicker as K, DatePicker as U, CheckboxGroup as P, CheckboxButton as z, Checkbox as J, RadioGroup as q, RadioButton as H, Radio as Q, Cascader as V, Select as X, Option as Y, InputNumber as Z, Input as p } from "element-ui";
-const he = {
+(function(){ try {var elementStyle = document.createElement('style'); elementStyle.appendChild(document.createTextNode(".FormGenerator.FormGeneratorSearch{display:flex;justify-content:flex-start;align-items:flex-start;flex-wrap:wrap;flex-direction:row;gap:15px 10px}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item{width:calc(25% - 8px);margin:0;display:flex;flex-wrap:nowrap}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item .el-form-item__content{flex-grow:1}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item .el-form-item__label-wrap{margin:0!important;flex-shrink:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.searchItem{display:flex;justify-content:flex-end;flex-wrap:nowrap}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.searchItem .el-form-item__content{flex-grow:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem{margin:0}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem .el-form-item__label-wrap{display:none}.FormGenerator.FormGeneratorSearch.el-form--inline .el-form-item.btnItem .el-form-item__content>div{display:flex;flex-wrap:nowrap}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline){padding-bottom:45px}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem{margin:0;height:64px;position:absolute;bottom:0;right:0;width:100%;box-shadow:1px 2px 10px #9ab7ff80;z-index:1;z-index:11;padding:0 16px;box-sizing:border-box}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem .el-form-item__content{height:100%}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .btnItem .el-form-item__content>div{display:flex;justify-content:flex-end;align-items:center;flex-wrap:nowrap;height:100%}.FormGenerator.FormGeneratorDialog.el-form:not(.el-form--inline) .el-form-item__content>div{width:100%}.FormGenerator .searchItem{flex-grow:1;flex-shrink:0}.FormGenerator .searchItem .el-form-item__content{justify-content:flex-end}.FormGenerator .el-select,.FormGenerator .el-input,.FormGenerator .el-cascader,.FormGenerator .el-date-editor,.FormGenerator .el-date-editor.el-input,.FormGenerator .el-date-editor.el-input__wrapper,.TableGenerator .el-scrollbar__view{width:100%}")); document.head.appendChild(elementStyle);} catch(e) {console.error('vite-plugin-css-injected-by-js', e);} })();import { Loading as U, Table as B, Empty as z, TableColumn as w, Form as J, FormItem as L, Button as v, Upload as H, Switch as Q, TimePicker as V, DatePicker as X, CheckboxGroup as W, CheckboxButton as Y, Checkbox as Z, RadioGroup as N, RadioButton as o, Radio as f, Cascader as p, Select as _, Option as O, InputNumber as ee, Input as se } from "element-ui";
+const $e = {
   name: "TableGenerator",
   data() {
     return {
@@ -13,7 +13,7 @@ const he = {
     "$attrs.loading": {
       handler: function(s) {
         var d;
-        s ? this.loadingInstance = B.service({
+        s ? this.loadingInstance = U.service({
           target: `.el-table-${this.el}`
         }) : (d = this.loadingInstance) == null || d.close();
       },
@@ -64,7 +64,7 @@ const he = {
       }
     }, [t.children && Array.isArray(t.children) && t.children.length > 0 ? d(t.children) : ""])), u = () => {
       var e;
-      return s(C, {
+      return s(B, {
         attrs: {
           stripe: !0,
           ...this.$attrs
@@ -75,7 +75,7 @@ const he = {
         class: `TableGenerator el-table-${this.el}`
       }, [Object.keys(this.$slot || []).includes("empty") ? s("template", {
         slot: "default"
-      }, [this.$slot.empty()]) : s(L, {
+      }, [this.$slot.empty()]) : s(z, {
         attrs: {
           description: "暂无数据"
         }
@@ -99,7 +99,7 @@ const he = {
           }
         }
       }) : ""]);
-    }, r = () => s(C, {
+    }, r = () => s(B, {
       attrs: {
         ...this.$attrs
       },
@@ -137,17 +137,17 @@ function b() {
     return s;
   }, b.apply(this, arguments);
 }
-var _ = ["attrs", "props", "domProps"], O = ["class", "style", "directives"], ee = ["on", "nativeOn"], se = function(s) {
+var le = ["attrs", "props", "domProps"], te = ["class", "style", "directives"], re = ["on", "nativeOn"], ae = function(s) {
   return s.reduce(function(d, u) {
     for (var r in u)
       if (!d[r])
         d[r] = u[r];
-      else if (_.indexOf(r) !== -1)
+      else if (le.indexOf(r) !== -1)
         d[r] = b({}, d[r], u[r]);
-      else if (O.indexOf(r) !== -1) {
+      else if (te.indexOf(r) !== -1) {
         var e = d[r] instanceof Array ? d[r] : [d[r]], t = u[r] instanceof Array ? u[r] : [u[r]];
         d[r] = [].concat(e, t);
-      } else if (ee.indexOf(r) !== -1)
+      } else if (re.indexOf(r) !== -1)
         for (var a in u[r])
           if (d[r][a]) {
             var h = d[r][a] instanceof Array ? d[r][a] : [d[r][a]], y = u[r][a] instanceof Array ? u[r][a] : [u[r][a]];
@@ -156,17 +156,17 @@ var _ = ["attrs", "props", "domProps"], O = ["class", "style", "directives"], ee
             d[r][a] = u[r][a];
       else if (r === "hook")
         for (var n in u[r])
-          d[r][n] = d[r][n] ? le(d[r][n], u[r][n]) : u[r][n];
+          d[r][n] = d[r][n] ? de(d[r][n], u[r][n]) : u[r][n];
       else
         d[r] = u[r];
     return d;
   }, {});
-}, le = function(s, d) {
+}, de = function(s, d) {
   return function() {
     s && s.apply(this, arguments), d && d.apply(this, arguments);
   };
-}, g = se;
-const ye = {
+}, g = ae;
+const ve = {
   name: "FormGenerator",
   data() {
     return {
@@ -213,7 +213,7 @@ const ye = {
       return e.formOption.forEach((a) => {
         var h, y, n;
         (h = a == null ? void 0 : a.formItem) != null && h.rules && !((n = (y = a == null ? void 0 : a.formItem) == null ? void 0 : y.rules) != null && n.hasOwnProperty("trigger")) && (a.formItem.rules.trigger = "blur");
-      }), s(W, {
+      }), s(J, {
         class: `FormGenerator ${(e == null ? void 0 : e.type) === "search" ? "FormGeneratorSearch" : ""} ${(e == null ? void 0 : e.type) === "dialog" ? "FormGeneratorDialog" : ""}`,
         attrs: {
           "validate-on-rule-change": !1,
@@ -227,13 +227,13 @@ const ye = {
         ref: "FormGenerator"
       }, [e.formOption.map((a) => {
         if (!(a.hasOwnProperty("show") && a.show === !1))
-          return s(o, {
+          return s(L, {
             key: a.formItem.prop,
             attrs: {
               ...a.formItem
             }
           }, [u(a, e)]);
-      }), e.disabled === !0 || e.noFooter || !this.$listeners.submit ? "" : s(o, {
+      }), e.disabled === !0 || e.noFooter || !this.$listeners.submit ? "" : s(L, {
         style: e.inline === !0 ? {
           width: `calc${100 / this.column}% - 8px`
         } : "",
@@ -257,10 +257,10 @@ const ye = {
         slot: "label"
       })])]);
     }, u = (e, t) => {
-      var a, h, y, n, $, A, i, k, E, m, x, S, F, j, G, D, T, I;
+      var a, h, y, n, $, A, k, E, i, x, m, S, F, j, G, D, T, I, M, C, P, q;
       switch (e.type) {
         case "input":
-          return s(p, g([{
+          return s(se, g([{
             ref: e.formItem.prop,
             attrs: {
               clearable: !0,
@@ -283,7 +283,7 @@ const ye = {
             })]);
           })]);
         case "input-number":
-          return s(Z, g([{
+          return s(ee, g([{
             ref: e.formItem.prop,
             attrs: {
               min: 0,
@@ -298,7 +298,7 @@ const ye = {
             }
           }]));
         case "select":
-          return s(X, g([{
+          return s(_, g([{
             ref: e.formItem.prop,
             props: {
               reserveKeyword: !1
@@ -313,13 +313,13 @@ const ye = {
                 this.$set(t.model, e.formItem.prop, l);
               }
             }
-          }]), [(h = e == null ? void 0 : e.control) == null ? void 0 : h.option.map((l) => s(Y, g([{}, this.getAttrAndEvent(l), {
+          }]), [(h = e == null ? void 0 : e.control) == null ? void 0 : h.option.map((l) => s(O, g([{}, this.getAttrAndEvent(l), {
             key: l.value
           }]), [Object.keys((l == null ? void 0 : l.slots) || []).map((c) => s("template", {
             slot: c
           }, [l == null ? void 0 : l.slots[c]()]))]))]);
         case "cascader":
-          return s(V, g([{
+          return s(p, g([{
             ref: e.formItem.prop
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             scopedSlots: (y = e == null ? void 0 : e.control) == null ? void 0 : y.slots,
@@ -331,7 +331,7 @@ const ye = {
             }
           }]));
         case "radio":
-          return s(q, g([{
+          return s(N, g([{
             ref: e.formItem.prop
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
@@ -340,7 +340,7 @@ const ye = {
                 this.$set(t.model, e.formItem.prop, l);
               }
             }
-          }]), [(n = e == null ? void 0 : e.control) == null ? void 0 : n.option.map((l) => s(Q, g([{}, this.getAttrAndEvent(l), {
+          }]), [(n = e == null ? void 0 : e.control) == null ? void 0 : n.option.map((l) => s(f, g([{}, this.getAttrAndEvent(l), {
             attrs: {
               label: l.value
             },
@@ -349,7 +349,7 @@ const ye = {
             slot: c
           }, [l == null ? void 0 : l.slots[c]()])), l.label]))]);
         case "radio-button":
-          return s(q, g([{
+          return s(N, g([{
             ref: e.formItem.prop
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
@@ -358,7 +358,7 @@ const ye = {
                 this.$set(t.model, e.formItem.prop, l);
               }
             }
-          }]), [($ = e == null ? void 0 : e.control) == null ? void 0 : $.option.map((l) => s(H, g([{}, this.getAttrAndEvent(l), {
+          }]), [($ = e == null ? void 0 : e.control) == null ? void 0 : $.option.map((l) => s(o, g([{}, this.getAttrAndEvent(l), {
             attrs: {
               label: l.value
             },
@@ -367,7 +367,7 @@ const ye = {
             slot: c
           }, [l == null ? void 0 : l.slots[c]()])), l.label]))]);
         case "checkbox":
-          return s(P, g([{
+          return s(W, g([{
             ref: e.formItem.prop
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
@@ -376,7 +376,7 @@ const ye = {
                 this.$set(t.model, e.formItem.prop, l);
               }
             }
-          }]), [(A = e == null ? void 0 : e.control) == null ? void 0 : A.option.map((l) => s(J, g([{}, this.getAttrAndEvent(l), {
+          }]), [(A = e == null ? void 0 : e.control) == null ? void 0 : A.option.map((l) => s(Z, g([{}, this.getAttrAndEvent(l), {
             attrs: {
               label: l.value
             },
@@ -385,7 +385,7 @@ const ye = {
             slot: c
           }, [l == null ? void 0 : l.slots[c]()])), l.label]))]);
         case "checkbox-button":
-          return s(P, g([{
+          return s(W, g([{
             ref: e.formItem.prop
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
@@ -394,7 +394,7 @@ const ye = {
                 this.$set(t.model, e.formItem.prop, l);
               }
             }
-          }]), [(i = e == null ? void 0 : e.control) == null ? void 0 : i.option.map((l) => s(z, g([{}, this.getAttrAndEvent(l), {
+          }]), [(k = e == null ? void 0 : e.control) == null ? void 0 : k.option.map((l) => s(Y, g([{}, this.getAttrAndEvent(l), {
             attrs: {
               label: l.value
             },
@@ -404,18 +404,18 @@ const ye = {
           }, [l == null ? void 0 : l.slots[c]()])), l.label]))]);
         case "date-picker":
         case "date-time-picker":
-          const M = {
+          const R = {
             datetimerange: "yyyy-MM-DD hh:mm:ss",
             daterange: "yyyy-MM-DD",
             datetime: "yyyy-MM-DD hh:mm:ss",
             date: "yyyy-MM-DD"
-          }[((k = e == null ? void 0 : e.control) == null ? void 0 : k.type) || "date"];
-          return s(U, g([{
+          }[((E = e == null ? void 0 : e.control) == null ? void 0 : E.type) || "date"];
+          return s(X, g([{
             ref: e.formItem.prop,
             attrs: {
               clearable: !0,
-              format: M,
-              "value-format": M
+              format: R,
+              "value-format": R
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
@@ -424,34 +424,18 @@ const ye = {
                 this.$set(t.model, e.formItem.prop, l);
               }
             }
-          }]), [Object.keys(((E = e == null ? void 0 : e.control) == null ? void 0 : E.slots) || []).map((l) => {
+          }]), [Object.keys(((i = e == null ? void 0 : e.control) == null ? void 0 : i.slots) || []).map((l) => {
             var c;
             return s("template", {
               slot: l
             }, [(c = e == null ? void 0 : e.control) == null ? void 0 : c.slots[l]()]);
           })]);
         case "time-picker":
-          return s(K, g([{
+          return s(V, g([{
             ref: e.formItem.prop,
             attrs: {
               clearable: !0
             }
-          }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
-            model: {
-              value: t.model[e.formItem.prop],
-              callback: (l) => {
-                this.$set(t.model, e.formItem.prop, l);
-              }
-            }
-          }]), [Object.keys(((m = e == null ? void 0 : e.control) == null ? void 0 : m.slots) || []).map((l) => {
-            var c;
-            return s("template", {
-              slot: l
-            }, [(c = e == null ? void 0 : e.control) == null ? void 0 : c.slots[l]()]);
-          })]);
-        case "switch":
-          return s(f, g([{
-            ref: e.formItem.prop
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
               value: t.model[e.formItem.prop],
@@ -465,8 +449,24 @@ const ye = {
               slot: l
             }, [(c = e == null ? void 0 : e.control) == null ? void 0 : c.slots[l]()]);
           })]);
+        case "switch":
+          return s(Q, g([{
+            ref: e.formItem.prop
+          }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
+            model: {
+              value: t.model[e.formItem.prop],
+              callback: (l) => {
+                this.$set(t.model, e.formItem.prop, l);
+              }
+            }
+          }]), [Object.keys(((m = e == null ? void 0 : e.control) == null ? void 0 : m.slots) || []).map((l) => {
+            var c;
+            return s("template", {
+              slot: l
+            }, [(c = e == null ? void 0 : e.control) == null ? void 0 : c.slots[l]()]);
+          })]);
         case "upload":
-          return s(N, g([{
+          return s(H, g([{
             ref: e.formItem.prop,
             attrs: {
               action: ""
@@ -490,10 +490,10 @@ const ye = {
             }
           }, ["上传文件"])])]);
         case "slot":
-          return this.$scopedSlots[e.formItem.prop] ? (G = (j = this.$scopedSlots)[e.formItem.prop]) == null ? void 0 : G.call(j, {
+          return (G = (j = e == null ? void 0 : e.control) == null ? void 0 : j.slots) != null && G.default && typeof ((T = (D = e == null ? void 0 : e.control) == null ? void 0 : D.slots) == null ? void 0 : T.default) == "function" ? (C = (I = e == null ? void 0 : e.control) == null ? void 0 : (M = I.slots).default) == null ? void 0 : C.call(M, {
             form: t.model,
             data: t.model[e.formItem.prop]
-          }) : (D = e == null ? void 0 : e.slots) != null && D.default ? (I = (T = e.slots).default) == null ? void 0 : I.call(T, {
+          }) : this.$scopedSlots[e.formItem.prop] ? (q = (P = this.$scopedSlots)[e.formItem.prop]) == null ? void 0 : q.call(P, {
             form: t.model,
             data: t.model[e.formItem.prop]
           }) : t.model[e.formItem.prop];
@@ -526,7 +526,7 @@ const ye = {
     }, [this.more ? "收起" : "展开"]) : ""]);
     return d(this.$attrs);
   }
-}, te = (s, d, u, r) => {
+}, ue = (s, d, u, r) => {
   if (!Array.isArray(s))
     return [];
   const e = [];
@@ -540,13 +540,13 @@ const ye = {
       h[y] = a[y];
     }), e.push(h);
   }), e;
-}, R = (s, d) => s.filter((u) => u.formItem.prop === d)[0] || {
+}, K = (s, d) => s.filter((u) => u.formItem.prop === d)[0] || {
   type: "input",
   formItem: {
     prop: "",
     label: ""
   }
-}, re = (s, d, u) => {
+}, ce = (s, d, u) => {
   var t;
   const r = {
     input: "输入",
@@ -562,7 +562,7 @@ const ye = {
     time: "选择",
     switch: "选择",
     upload: "上传"
-  }, e = R(s.formOption, s.field);
+  }, e = K(s.formOption, s.field);
   if (Array.isArray(d) && d.length === 0)
     return u(new Error(`请${r[e.type] || "完善"}${e.formItem.label}`));
   if (!d)
@@ -576,14 +576,14 @@ const ye = {
     });
   else
     return e.formItem.rules.validator.test(d) ? u() : u(new Error(e.formItem.rules.message || "格式有误"));
-}, ae = (s, d = []) => {
+}, he = (s, d = []) => {
   let u = {};
   return s.forEach((r) => {
     var t, a;
     const e = typeof r == "string" ? r : r.formItem.prop;
-    d.includes(e) || (u[e] = [{ required: !0, validator: re, trigger: ((a = (t = r.formItem) == null ? void 0 : t.rules) == null ? void 0 : a.trigger) || "blur", formOption: s }]);
+    d.includes(e) || (u[e] = [{ required: !0, validator: ce, trigger: ((a = (t = r.formItem) == null ? void 0 : t.rules) == null ? void 0 : a.trigger) || "blur", formOption: s }]);
   }), u;
-}, de = (s, d = []) => {
+}, ye = (s, d = []) => {
   const u = {
     input: "输入",
     "input-number": "输入",
@@ -609,16 +609,16 @@ const ye = {
       }
     }
   }), s;
-}, ge = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}, we = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getLabel: R,
-  getOption: te,
-  getRules: ae,
-  setRequired: de
+  getLabel: K,
+  getOption: ue,
+  getRules: he,
+  setRequired: ye
 }, Symbol.toStringTag, { value: "Module" }));
 export {
-  ye as FormGenerator,
-  ge as GeneratorUtils,
-  he as TableGenerator
+  ve as FormGenerator,
+  we as GeneratorUtils,
+  $e as TableGenerator
 };
 //# sourceMappingURL=index.js.map
