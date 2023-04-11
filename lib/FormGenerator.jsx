@@ -98,7 +98,7 @@ export default {
       switch (formOption.type) {
         case 'input':
           return <ElInput ref={formOption.formItem.prop} clearable={true} maxlength={30} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
-            {Object.keys(formOption?.control?.slot || []).map(i => <template slot={i}>{formOption?.control?.slot[i]({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })}</template>)}
+            {Object.keys(formOption?.control?.slots || []).map(i => <template slot={i}>{formOption?.control?.slots[i]({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })}</template>)}
           </ElInput>
           break;
         case 'input-number':
@@ -108,13 +108,13 @@ export default {
           return <ElSelect ref={formOption.formItem.prop} {...{ props: { reserveKeyword: false } }} clearable={true} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]} >
             {formOption?.control?.option.map((controlOptionItem) => (
               <ElOption {...this.getAttrAndEvent(controlOptionItem)} key={controlOptionItem.value}>
-                {Object.keys(controlOptionItem?.slot || []).map(i => <template slot={i}>{controlOptionItem?.slot[i]()}</template>)}
+                {Object.keys(controlOptionItem?.slots || []).map(i => <template slot={i}>{controlOptionItem?.slots[i]()}</template>)}
               </ElOption>
             ))}
           </ElSelect>
           break;
         case 'cascader':
-          return <ElCascader ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} scopedSlots={formOption?.control?.slot} v-model={_attrs.model[formOption.formItem.prop]} >
+          return <ElCascader ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} scopedSlots={formOption?.control?.slots} v-model={_attrs.model[formOption.formItem.prop]} >
           </ElCascader>
           break;
         case 'radio':
@@ -122,7 +122,7 @@ export default {
             <ElRadioGroup ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
               {formOption?.control?.option.map((controlOptionItem) => (
                 <ElRadio {...this.getAttrAndEvent(controlOptionItem)} label={controlOptionItem.value} key={controlOptionItem.label} >
-                  {Object.keys(controlOptionItem?.slot || []).map(i => <template slot={i}>{controlOptionItem?.slot[i]()}</template>)}
+                  {Object.keys(controlOptionItem?.slots || []).map(i => <template slot={i}>{controlOptionItem?.slots[i]()}</template>)}
                   {controlOptionItem.label}
                 </ElRadio>
               ))}
@@ -134,7 +134,7 @@ export default {
             <ElRadioGroup ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
               {formOption?.control?.option.map((controlOptionItem) => (
                 <ElRadioButton {...this.getAttrAndEvent(controlOptionItem)} label={controlOptionItem.value} key={controlOptionItem.label} >
-                  {Object.keys(controlOptionItem?.slot || []).map(i => <template slot={i}>{controlOptionItem?.slot[i]()}</template>)}
+                  {Object.keys(controlOptionItem?.slots || []).map(i => <template slot={i}>{controlOptionItem?.slots[i]()}</template>)}
                   {controlOptionItem.label}
                 </ElRadioButton>
               ))}
@@ -146,7 +146,7 @@ export default {
             <ElCheckboxGroup ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
               {formOption?.control?.option.map((controlOptionItem) => (
                 <ElCheckbox  {...this.getAttrAndEvent(controlOptionItem)} label={controlOptionItem.value} key={controlOptionItem.label} >
-                  {Object.keys(controlOptionItem?.slot || []).map(i => <template slot={i}>{controlOptionItem?.slot[i]()}</template>)}
+                  {Object.keys(controlOptionItem?.slots || []).map(i => <template slot={i}>{controlOptionItem?.slots[i]()}</template>)}
                   {controlOptionItem.label}
                 </ElCheckbox>
               ))}
@@ -158,14 +158,15 @@ export default {
             <ElCheckboxGroup ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
               {formOption?.control?.option.map((controlOptionItem) => (
                 <ElCheckboxButton  {...this.getAttrAndEvent(controlOptionItem)} label={controlOptionItem.value} key={controlOptionItem.label} >
-                  {Object.keys(controlOptionItem?.slot || []).map(i => <template slot={i}>{controlOptionItem?.slot[i]()}</template>)}
+                  {Object.keys(controlOptionItem?.slots || []).map(i => <template slot={i}>{controlOptionItem?.slots[i]()}</template>)}
                   {controlOptionItem.label}
                 </ElCheckboxButton>
               ))}
             </ElCheckboxGroup>
           )
           break;
-        case 'datetime':
+        case 'date-picker':
+        case 'date-time-picker':
           const formatEnum = {
             'datetimerange': 'yyyy-MM-DD hh:mm:ss',
             'daterange': 'yyyy-MM-DD',
@@ -174,34 +175,33 @@ export default {
           }
           const formatEnumVal = formatEnum[formOption?.control?.type || 'date']
           return <ElDatePicker ref={formOption.formItem.prop} clearable={true} format={formatEnumVal} value-format={formatEnumVal} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]} >
-            {Object.keys(formOption?.control?.slot || []).map(i => <template slot={i}>{formOption?.control?.slot[i]()}</template>)}
+            {Object.keys(formOption?.control?.slots || []).map(i => <template slot={i}>{formOption?.control?.slots[i]()}</template>)}
           </ElDatePicker>
           break;
-        case 'time':
+        case 'time-picker':
           return <ElTimePicker ref={formOption.formItem.prop} clearable={true} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}  >
-            {Object.keys(formOption?.control?.slot || []).map(i => <template slot={i}>{formOption?.control?.slot[i]()}</template>)}
+            {Object.keys(formOption?.control?.slots || []).map(i => <template slot={i}>{formOption?.control?.slots[i]()}</template>)}
           </ElTimePicker>
           break;
         case 'switch':
           return <ElSwitch ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]} >
-            {Object.keys(formOption?.control?.slot || []).map(i => <template slot={i}>{formOption?.control?.slot[i]()}</template>)}
+            {Object.keys(formOption?.control?.slots || []).map(i => <template slot={i}>{formOption?.control?.slots[i]()}</template>)}
           </ElSwitch>
           break;
         case 'upload':
           return (
             <ElUpload ref={formOption.formItem.prop} action='' {...this.getAttrAndEvent(formOption?.control)} v-model:file-list={_attrs.model[formOption.formItem.prop]}>
-              {Object.keys(formOption?.control?.slot || []).map(i => {
-                return <template slot={i}>{formOption?.control?.slot[i]()}</template>
+              {Object.keys(formOption?.control?.slots || []).map(i => {
+                return <template slot={i}>{formOption?.control?.slots[i]()}</template>
               })}
-              {Object.keys(formOption?.control?.slot || []).includes('default') ? '' : <template slot="default"><ElButton type="primary">上传文件</ElButton></template>}
+              {Object.keys(formOption?.control?.slots || []).includes('default') ? '' : <template slot="default"><ElButton type="primary">上传文件</ElButton></template>}
             </ElUpload>
           )
           break;
-        case 'txt':
-          return _attrs.model[formOption.formItem.prop]
-          break;
         case 'slot':
-          return this.$scopedSlots[formOption.formItem.prop]?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })
+          if(this.$scopedSlots[formOption.formItem.prop]) return this.$scopedSlots[formOption.formItem.prop]?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })
+          if(formOption?.slots?.default) return formOption.slots.default?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })
+          return _attrs.model[formOption.formItem.prop]
           break;
       }
     }

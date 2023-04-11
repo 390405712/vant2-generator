@@ -5,7 +5,7 @@ import VitePluginStyleInject from 'vite-plugin-style-inject';
 export default defineConfig({
   build: {
     lib: {
-      entry: ['./lib/index.js', './lib/utils.js', './lib/regexp.js', './lib/regexpToArr.js'],
+      entry: ['./lib/index.js'],
       name: 'element-ui-generator',
       formats: ['es'],
       // "commonjs" | "esm" | "module" | "systemjs"
