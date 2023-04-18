@@ -87,14 +87,14 @@ export default {
                   this.$set(formOption, 'showPopup', false)
                   if (Array.isArray(scope)) {
                     const val = scope.reduce((arr, item) => {
-                      arr.push(typeof item === 'object' ? item?.[formOption?.control?.columnsFieldNames?.values ?? 'value'] : item)
+                      arr.push(typeof item === 'object' ? item?.[formOption?.control?.columnsFieldNames?.values ? formOption?.control?.columnsFieldNames?.values : 'value'] : item)
                       return arr
                     }, []);
                     this.$set(_attrs.model, formOption.formItem.name, val)
-                    formOption.formItem.text = scope.map((item) => typeof item === 'object' ? item?.[formOption?.control?.columnsFieldNames?.text ?? 'text'] : item).join('/');
+                    formOption.formItem.text = scope.map((item) => typeof item === 'object' ? item?.[formOption?.control?.columnsFieldNames?.text ? formOption?.control?.columnsFieldNames?.text : 'text'] : item).join('/');
                   } else {
-                    this.$set(_attrs.model, formOption.formItem.name, scope[formOption?.control?.columnsFieldNames?.values ?? 'value'])
-                    formOption.formItem.text = scope[formOption?.control?.columnsFieldNames?.text ?? 'text'];
+                    this.$set(_attrs.model, formOption.formItem.name, scope[formOption?.control?.columnsFieldNames?.values ? formOption?.control?.columnsFieldNames?.values : 'value'])
+                    formOption.formItem.text = scope[formOption?.control?.columnsFieldNames?.text ? formOption?.control?.columnsFieldNames?.text : 'text'];
                   }
                 }}
                 {...this.getAttrAndEvent(formOption?.control)}
@@ -112,7 +112,7 @@ export default {
                 onFinish={(scope) => {
                   this.$set(formOption, 'showPopup', false)
                   this.$set(_attrs.model, formOption.formItem.name, scope.value)
-                  formOption.formItem.text = scope.selectedOptions.map((item) => item[formOption?.control?.fieldNames?.text ?? 'text']).join('/');
+                  formOption.formItem.text = scope.selectedOptions.map((item) => item[formOption?.control?.fieldNames?.text ? formOption?.control?.fieldNames?.text : 'text']).join('/');
                 }}
                 {...this.getAttrAndEvent(formOption?.control)}
                 scopedSlots={formOption?.control?.slots}
@@ -206,7 +206,7 @@ export default {
         case 'slot':
           return <Field readonly inputAlign='right'
             {...formOption.formItem}>
-            <template slot='label'>{formOption.formItem.label ?? ''}</template>
+            <template slot='label'>{formOption.formItem.label ? formOption.formItem.label : ''}</template>
             <template slot='input'>{
               formOption?.control?.slots?.input && typeof formOption?.control?.slots?.input === 'function'
                 ? formOption?.control?.slots?.input?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.name] })
