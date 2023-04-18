@@ -6,18 +6,18 @@ export default defineConfig({
   build: {
     lib: {
       entry: ['./lib/index.js'],
-      name: 'element-ui-generator',
+      name: 'vant2-generator',
       formats: ['es'],
       // "commonjs" | "esm" | "module" | "systemjs"
       fileName: (format, entryName) => `${entryName}.js`,
     },
     sourcemap: true,
     rollupOptions: {
-      external: ['vue', 'element-ui'],
+      external: ['vue', 'vant'],
       output: {
         globals: {
           vue: 'Vue',
-          'element-ui': 'element-ui',
+          'vant': 'vant',
         },
       },
     },

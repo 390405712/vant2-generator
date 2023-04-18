@@ -1,7 +1,7 @@
 {
-  "name": "element-ui-generator",
-  "version": "1.0.21",
-  "description": "基于element-ui封装的表格、表单生成器",
+  "name": "vant2-generator",
+  "version": "1.0.0",
+  "description": "基于vant2封装的表单生成器",
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
@@ -9,24 +9,25 @@
   },
   "keywords": [
     "vue",
-    "element-ui",
+    "vant2",
     "form",
-    "table",
     "generator"
   ],
   "author": "NieR",
   "license": "ISC",
   "devDependencies": {
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
+    "@vue/babel-preset-jsx": "^1.4.0",
+    "core-js": "^3.6.5",
     "path": "^0.12.7",
     "sass": "^1.58.2",
     "vite": "^4.1.2",
     "vite-plugin-style-inject": "^0.0.1",
     "vite-plugin-vue2": "^2.0.3",
-    "vue-template-compiler": "^2.7.14",
-    "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
-    "@vue/babel-preset-jsx": "^1.4.0",
-    "core-js": "^3.6.5",
-    "element-ui": "^2.15.13",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.7.14"
+  },
+  "dependencies": {
+    "vant": "^2.12.54"
   }
 }

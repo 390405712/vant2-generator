@@ -1,6 +1,6 @@
-# 基于element-ui封装的表格、表单生成器
+# 基于vant2封装的表格、表单生成器
 
-使用文档：[element-ui-generator](https://qq390405712.gitee.io/element-ui-generator-docs)
+使用文档：[vant2-generator](https://qq390405712.gitee.io/vant2-generator-docs)
 
 ## 安装
 
@@ -10,13 +10,13 @@
 # 选择一个你喜欢的包管理器
 
 # NPM
-$ npm install element-ui element-ui-generator --save
+$ npm install vant@latest-v2 vant2-generator --save
 
 # Yarn
-$ yarn add element-ui element-ui-generator
+$ yarn add vant@latest-v2 vant2-generator
 
 # pnpm
-$ pnpm install element-ui element-ui-generator
+$ pnpm install vant@latest-v2 vant2-generator
 ```
 
 - **步骤 2：** 引入依赖
@@ -26,16 +26,12 @@ $ pnpm install element-ui element-ui-generator
 import Vue from 'vue';
 import App from './App.vue'
 
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import 'vant/lib/index.css'
 
-import { FormGenerator, TableGenerator } from 'element-ui-generator'
-
+import { FormGenerator } from 'vant2-generator'
 
 Vue.component('FormGenerator', FormGenerator);
-Vue.component('TableGenerator', TableGenerator);
 
-Vue.use(ElementUI)
 
 new Vue({
   render: h => h(App)
@@ -47,14 +43,13 @@ new Vue({
 ```vue
 <template>
   <FormGenerator :model="form" :formOption="formOption" />
-  <TableGenerator :data="tableData":tableOption="tableOption" />
 </template>
 <script>
 
-import { FormGenerator,TableGenerator } from 'element-ui-generator'
+import { FormGenerator } from 'vant2-generator'
 
 export default{
-  components:{FormGenerator,TableGenerator },
+  components:{FormGenerator },
   // ...
 }
 </script>

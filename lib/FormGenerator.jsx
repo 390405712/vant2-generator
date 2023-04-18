@@ -1,23 +1,8 @@
-import { Input as ElInput, InputNumber as ElInputNumber, Radio as ElRadio, RadioGroup as ElRadioGroup, RadioButton as ElRadioButton, Checkbox as ElCheckbox, CheckboxButton as ElCheckboxButton, CheckboxGroup as ElCheckboxGroup, Switch as ElSwitch, Select as ElSelect, Option as ElOption, Button as ElButton, DatePicker as ElDatePicker, TimePicker as ElTimePicker, Form as ElForm, FormItem as ElFormItem, Tree as ElTree, Upload as ElUpload, Cascader as ElCascader, } from 'element-ui';
+import { Form, CellGroup, Button, Field, Calendar, Cascader, Popup, Checkbox, CheckboxGroup, Radio, RadioGroup, Switch, Picker, DatetimePicker, Stepper, Uploader } from 'vant'
 
 export default {
   name: 'FormGenerator',
-  data() {
-    return {
-      more: false,
-      column: 0
-    }
-  },
   methods: {
-    submit() {
-      this.$refs.FormGenerator.validate((valid) => {
-        if (valid) this.$emit('submit')
-      })
-    },
-    reset() {
-      this.$refs.FormGenerator.resetFields()
-      this.$emit('submit', 'init')
-    },
     getAttrAndEvent(obj) {
       const res = {
         attrs: {},
@@ -32,20 +17,6 @@ export default {
       }
       return res
     },
-    setShow(bool) {
-      this.more = bool
-      this.$attrs.formOption.forEach((i, index) => {
-        if (index > this.column - 2) i.show = bool
-      })
-    },
-    validate: (...args) => this.$refs.FormGenerator.validate(...args),
-    validateField: (...args) => this.$refs.FormGenerator.validateField(...args),
-    resetFields: (...args) => this.$refs.FormGenerator.resetFields(...args),
-    clearValidate: (...args) => this.$refs.FormGenerator.clearValidate(...args)
-  },
-  created() {
-    this.column = (!isNaN(this.$attrs.column) ? (this.$attrs.column >= 4 ? this.$attrs.column : 4) : 4)
-    if (this.$attrs.formOption.length >= (this.column - 2) && this.$attrs?.type === 'search') this.setShow(false)
   },
   render(h) {
     if (typeof window == "undefined") {
@@ -54,168 +25,198 @@ export default {
       window.h = this.$createElement
     }
     const renderForm = (_attrs) => {
-      _attrs.formOption.forEach((i) => {
-        if (i?.formItem?.rules && !i?.formItem?.rules?.hasOwnProperty('trigger')) i.formItem.rules.trigger = 'blur'
-      })
-      return (
-        <ElForm class={`FormGenerator ${_attrs?.type === 'search' ? 'FormGeneratorSearch' : ''} ${_attrs?.type === 'dialog' ? 'FormGeneratorDialog' : ''}`} validate-on-rule-change={false} label-width={_attrs.labelWidth || 'auto'} inline={_attrs?.type === 'search' ? true : false}
-          {...{ attrs: _attrs, on: this.$listeners }} ref="FormGenerator" >
-          {_attrs.formOption.map((formOption) => {
-            if (!(formOption.hasOwnProperty('show') && formOption.show === false)) return <ElFormItem key={formOption.formItem.prop} {...{ attrs: formOption.formItem }} >{renderControl(formOption, _attrs)}</ElFormItem>
+      return <Form class={`FormGenerator`} {...{ attrs: _attrs, on: this.$listeners }} ref="FormGenerator">
+        <CellGroup>
+          {_attrs.formOption.map((formOption, index) => {
+            if (!(formOption.hasOwnProperty('show') && formOption.show === false)) return renderControl(formOption, _attrs)
           })}
-          {_attrs.disabled === true || _attrs.noFooter || !this.$listeners.submit
-            ? ''
-            : <ElFormItem
-              style={_attrs.inline === true ? { width: `calc${100 / this.column}% - 8px` } : ''}
-              class={`btnItem ${this.more ? "searchItem" : ""}`}
-            >
-              {this.$scopedSlots?.default
-                ? <div>{this.$scopedSlots.default()[0]}</div>
-                : _attrs?.type === 'search'
-                  ? renderSearchItem(_attrs)
-                  : <div>
-                    {
-                      _attrs?.type === 'dialog'
-                        ? <ElButton onClick={(e) => {
-                          const getDialogEl = (el) => {
-                            if (el.parentElement.classList.value.split(' ').includes('el-dialog')) return getDialogEl(el.parentElement)
-                            return el.parentElement
-                          }
-                          getDialogEl(e.target).querySelector('.el-dialog__headerbtn')?.click?.()
-                        }}>取消</ElButton>
-                        : ''
-                    }
-                    <ElButton type="primary" onClick={this.submit}>确定</ElButton>
-                  </div>
-              }
-              <template slot="label"></template>
-            </ElFormItem>
-          }
-        </ElForm >
-      )
+        </CellGroup>
+        {_attrs.disabled === true || !this.$listeners.submit
+          ? ''
+          : this.$scopedSlots?.default
+            ? <div>{this.$scopedSlots.default()[0]}</div>
+            : <Button type="primary" onClick={this.submit}>提交</Button>
+        }
+      </Form>
+    }
+    const renderField = (_attrs, formOption, custom) => {
+      let model = custom ? formOption.formItem.text : _attrs.model[formOption.formItem.name]
+      return <Field is-link readonly onClick={_attrs.disabled ? () => '' : () => { this.$set(formOption, 'showPopup', true) }} inputAlign='right' v-model={model} {...this.getAttrAndEvent(formOption?.formItem)} scopedSlots={formOption?.formItem?.slots} />
+    }
+    const formatterDate = (scope, type = 'datetime') => {
+      let val
+      switch (type) {
+        case 'date':
+          val = `${scope.getFullYear()}-${String(scope.getMonth() + 1).padStart(2, '0')}-${String(scope.getDate()).padStart(2, '0')}`
+          break;
+        case 'datehour':
+          val = `${scope.getFullYear()}-${String(scope.getMonth() + 1).padStart(2, '0')}-${String(scope.getDate()).padStart(2, '0')} ${String(scope.getHours()).padStart(2, '0')}`
+          break;
+        case 'year-month':
+          val = `${scope.getFullYear()}-${String(scope.getMonth() + 1).padStart(2, '0')}`
+          break;
+        case 'month-day':
+          val = `${String(scope.getMonth() + 1).padStart(2, '0')}-${String(scope.getDate()).padStart(2, '0')}`
+          break;
+        case 'time':
+          val = scope
+          break;
+        case 'datetime':
+          val = `${scope.getFullYear()}-${String(scope.getMonth() + 1).padStart(2, '0')}-${String(scope.getDate()).padStart(2, '0')} ${String(scope.getHours()).padStart(2, '0')}:${String(scope.getMinutes()).padStart(2, '0')}:${String(scope.getSeconds()).padStart(2, '0')}`
+          break;
+      }
+      return val
     }
     const renderControl = (formOption, _attrs) => {
       switch (formOption.type) {
-        case 'input':
-          return <ElInput ref={formOption.formItem.prop} clearable={true} maxlength={30} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
-            {Object.keys(formOption?.control?.slots || []).map(i => <template slot={i}>{formOption?.control?.slots[i]({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })}</template>)}
-          </ElInput>
-          break;
-        case 'input-number':
-          return <ElInputNumber ref={formOption.formItem.prop} min={0} max={100} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]} />
-          break;
-        case 'select':
-          return <ElSelect ref={formOption.formItem.prop} {...{ props: { reserveKeyword: false } }} clearable={true} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]} >
-            {formOption?.control?.option.map((controlOptionItem) => (
-              <ElOption {...this.getAttrAndEvent(controlOptionItem)} key={controlOptionItem.value}>
-                {Object.keys(controlOptionItem?.slots || []).map(i => <template slot={i}>{controlOptionItem?.slots[i]()}</template>)}
-              </ElOption>
-            ))}
-          </ElSelect>
+        case 'field':
+          return <Field ref={formOption.formItem.name} inputAlign='right' {...this.getAttrAndEvent({ ...formOption.formItem, ...formOption.control })} v-model={_attrs.model[formOption.formItem.name]} scopedSlots={formOption?.control?.slots} />
+        case 'stepper':
+          return <Field readonly {...this.getAttrAndEvent(formOption?.formItem)}>
+            <template slot='right-icon'>
+              <Stepper ref={formOption.formItem.name} disabled={_attrs.disabled} button-size="21px" v-model={_attrs.model[formOption.formItem.name]} {...this.getAttrAndEvent(formOption?.control)} />
+            </template>
+          </Field>
+        case 'picker':
+          return <div>
+            {renderField(_attrs, formOption, true)}
+            <Popup lazy-render={false} v-model={formOption.showPopup} round position="bottom" {...this.getAttrAndEvent(formOption?.popup)}>
+              <Picker ref={formOption.formItem.name} show-toolbar v-model={_attrs.model[formOption.formItem.name]}
+                onCancel={() => { this.$set(formOption, 'showPopup', false) }}
+                onConfirm={(scope) => {
+                  this.$set(formOption, 'showPopup', false)
+                  if (Array.isArray(scope)) {
+                    const val = scope.reduce((arr, item) => {
+                      arr.push(typeof item === 'object' ? item?.[formOption?.control?.columnsFieldNames?.values ?? 'value'] : item)
+                      return arr
+                    }, []);
+                    this.$set(_attrs.model, formOption.formItem.name, val)
+                    formOption.formItem.text = scope.map((item) => typeof item === 'object' ? item?.[formOption?.control?.columnsFieldNames?.text ?? 'text'] : item).join('/');
+                  } else {
+                    this.$set(_attrs.model, formOption.formItem.name, scope[formOption?.control?.columnsFieldNames?.values ?? 'value'])
+                    formOption.formItem.text = scope[formOption?.control?.columnsFieldNames?.text ?? 'text'];
+                  }
+                }}
+                {...this.getAttrAndEvent(formOption?.control)}
+                scopedSlots={formOption?.control?.slots}
+              />
+            </Popup>
+          </div>
           break;
         case 'cascader':
-          return <ElCascader ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} scopedSlots={formOption?.control?.slots} v-model={_attrs.model[formOption.formItem.prop]} >
-          </ElCascader>
+          return <div>
+            {renderField(_attrs, formOption, true)}
+            <Popup v-model={formOption.showPopup} round position="bottom" {...this.getAttrAndEvent(formOption?.popup)}>
+              <Cascader ref={formOption.formItem.name} v-model={_attrs.model[formOption.formItem.name]}
+                onClose={() => { this.$set(formOption, 'showPopup', false) }}
+                onFinish={(scope) => {
+                  this.$set(formOption, 'showPopup', false)
+                  this.$set(_attrs.model, formOption.formItem.name, scope.value)
+                  formOption.formItem.text = scope.selectedOptions.map((item) => item[formOption?.control?.fieldNames?.text ?? 'text']).join('/');
+                }}
+                {...this.getAttrAndEvent(formOption?.control)}
+                scopedSlots={formOption?.control?.slots}
+              />
+            </Popup>
+          </div>
+        case 'calendar':
+          return <div>
+            {renderField(_attrs, formOption, formOption?.control?.type === 'multiple')}
+            <Calendar ref={formOption.formItem.name} v-model={formOption.showPopup}
+              show-confirm={formOption?.control?.type === 'multiple'}
+              onConfirm={(value) => {
+                this.$set(formOption, 'showPopup', false)
+                const formatDate = (date) => `${date?.getFullYear?.()}-${date?.getMonth?.() + 1}-${date?.getDate?.()}`
+                switch (formOption?.control?.type) {
+                  case 'multiple':
+                    const val = value.reduce((arr, item) => {
+                      arr.push(formatDate(item))
+                      return arr
+                    }, [])
+                    this.$set(_attrs.model, formOption.formItem.name, val)
+                    formOption.formItem.text = `选择了 ${value.length} 个日期`
+                    break;
+                  case 'range':
+                    this.$set(_attrs.model, formOption.formItem.name, `${formatDate(value[0])}~${formatDate(value[1])}`)
+                    break;
+                  default:
+                    this.$set(_attrs.model, formOption.formItem.name, formatDate(value))
+                    break;
+                }
+              }}
+              {...this.getAttrAndEvent(formOption?.control)}
+              scopedSlots={formOption?.control?.slots}
+            >
+            </Calendar>
+          </div>
           break;
         case 'radio':
-          return (
-            <ElRadioGroup ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
-              {formOption?.control?.option.map((controlOptionItem) => (
-                <ElRadio {...this.getAttrAndEvent(controlOptionItem)} label={controlOptionItem.value} key={controlOptionItem.label} >
-                  {Object.keys(controlOptionItem?.slots || []).map(i => <template slot={i}>{controlOptionItem?.slots[i]()}</template>)}
-                  {controlOptionItem.label}
-                </ElRadio>
-              ))}
-            </ElRadioGroup>
-          )
-          break;
-        case 'radio-button':
-          return (
-            <ElRadioGroup ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
-              {formOption?.control?.option.map((controlOptionItem) => (
-                <ElRadioButton {...this.getAttrAndEvent(controlOptionItem)} label={controlOptionItem.value} key={controlOptionItem.label} >
-                  {Object.keys(controlOptionItem?.slots || []).map(i => <template slot={i}>{controlOptionItem?.slots[i]()}</template>)}
-                  {controlOptionItem.label}
-                </ElRadioButton>
-              ))}
-            </ElRadioGroup>
-          )
-          break;
+          return <Field inputAlign='right' {...this.getAttrAndEvent(formOption?.formItem)}>
+            <template slot='input'>
+              <RadioGroup ref={formOption.formItem.name} disabled={_attrs.disabled} direction="horizontal" v-model={_attrs.model[formOption.formItem.name]} {...this.getAttrAndEvent(formOption?.control)}>
+                {formOption.control.radioGroup.map((controlOptionItem) => (
+                  <Radio name={controlOptionItem.value}  {...this.getAttrAndEvent(controlOptionItem)} scopedSlots={controlOptionItem?.slots}>
+                    {controlOptionItem.label}
+                  </Radio>
+                ))}
+              </RadioGroup>
+            </template>
+          </Field>
         case 'checkbox':
-          return (
-            <ElCheckboxGroup ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
-              {formOption?.control?.option.map((controlOptionItem) => (
-                <ElCheckbox  {...this.getAttrAndEvent(controlOptionItem)} label={controlOptionItem.value} key={controlOptionItem.label} >
-                  {Object.keys(controlOptionItem?.slots || []).map(i => <template slot={i}>{controlOptionItem?.slots[i]()}</template>)}
-                  {controlOptionItem.label}
-                </ElCheckbox>
-              ))}
-            </ElCheckboxGroup>
-          )
-          break;
-        case 'checkbox-button':
-          return (
-            <ElCheckboxGroup ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}>
-              {formOption?.control?.option.map((controlOptionItem) => (
-                <ElCheckboxButton  {...this.getAttrAndEvent(controlOptionItem)} label={controlOptionItem.value} key={controlOptionItem.label} >
-                  {Object.keys(controlOptionItem?.slots || []).map(i => <template slot={i}>{controlOptionItem?.slots[i]()}</template>)}
-                  {controlOptionItem.label}
-                </ElCheckboxButton>
-              ))}
-            </ElCheckboxGroup>
-          )
-          break;
-        case 'date-picker':
-        case 'date-time-picker':
-          const formatEnum = {
-            'datetimerange': 'yyyy-MM-DD hh:mm:ss',
-            'daterange': 'yyyy-MM-DD',
-            'datetime': 'yyyy-MM-DD hh:mm:ss',
-            'date': 'yyyy-MM-DD',
-          }
-          const formatEnumVal = formatEnum[formOption?.control?.type || 'date']
-          return <ElDatePicker ref={formOption.formItem.prop} clearable={true} format={formatEnumVal} value-format={formatEnumVal} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]} >
-            {Object.keys(formOption?.control?.slots || []).map(i => <template slot={i}>{formOption?.control?.slots[i]()}</template>)}
-          </ElDatePicker>
-          break;
-        case 'time-picker':
-          return <ElTimePicker ref={formOption.formItem.prop} clearable={true} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]}  >
-            {Object.keys(formOption?.control?.slots || []).map(i => <template slot={i}>{formOption?.control?.slots[i]()}</template>)}
-          </ElTimePicker>
+          return <Field inputAlign='right' {...this.getAttrAndEvent(formOption?.formItem)}>
+            <template slot='input'>
+              <CheckboxGroup ref={formOption.formItem.name} disabled={_attrs.disabled} direction="horizontal" v-model={_attrs.model[formOption.formItem.name]} {...this.getAttrAndEvent(formOption?.control)}>
+                {formOption.control.checkboxGroup.map((controlOptionItem) => (
+                  <Checkbox name={controlOptionItem.value}  {...this.getAttrAndEvent(controlOptionItem)} scopedSlots={controlOptionItem?.slots}>
+                    {controlOptionItem.label}
+                  </Checkbox>
+                ))}
+              </CheckboxGroup>
+            </template>
+          </Field>
+        case 'datetimePicker':
+          return <div>
+            {renderField(_attrs, formOption)}
+            <Popup v-model={formOption.showPopup} round position="bottom"  {...this.getAttrAndEvent(formOption?.popup)}>
+              <DatetimePicker ref={formOption.formItem.name}
+                onCancel={() => { this.$set(formOption, 'showPopup', false) }}
+                onConfirm={(scope) => {
+                  this.$set(formOption, 'showPopup', false)
+                  this.$set(_attrs.model, formOption.formItem.name, formatterDate(scope, formOption?.control?.type))
+                }}
+                {...this.getAttrAndEvent(formOption?.control)}
+                scopedSlots={formOption?.control?.slots}
+              >
+              </DatetimePicker>
+            </Popup>
+          </div>
           break;
         case 'switch':
-          return <ElSwitch ref={formOption.formItem.prop} {...this.getAttrAndEvent(formOption?.control)} v-model={_attrs.model[formOption.formItem.prop]} >
-            {Object.keys(formOption?.control?.slots || []).map(i => <template slot={i}>{formOption?.control?.slots[i]()}</template>)}
-          </ElSwitch>
-          break;
-        case 'upload':
-          return (
-            <ElUpload ref={formOption.formItem.prop} action='' {...this.getAttrAndEvent(formOption?.control)} v-model:file-list={_attrs.model[formOption.formItem.prop]}>
-              {Object.keys(formOption?.control?.slots || []).map(i => {
-                return <template slot={i}>{formOption?.control?.slots[i]()}</template>
-              })}
-              {Object.keys(formOption?.control?.slots || []).includes('default') ? '' : <template slot="default"><ElButton type="primary">上传文件</ElButton></template>}
-            </ElUpload>
-          )
-          break;
+          return <Field class="field-switch" readonly {...this.getAttrAndEvent(formOption?.formItem)}>
+            <template slot='right-icon'>
+              <Switch ref={formOption.formItem.name} disabled={_attrs.disabled} size="24px" v-model={_attrs.model[formOption.formItem.name]} {...this.getAttrAndEvent(formOption?.control)} />
+            </template>
+          </Field>
+        case 'uploader':
+          return <Field readonly inputAlign='right' {...this.getAttrAndEvent(formOption?.formItem)}>
+            <template slot='input'>
+              <Uploader ref={formOption.formItem.name} disabled={_attrs.disabled} v-model={_attrs.model[formOption.formItem.name]} {...this.getAttrAndEvent(formOption?.control)} scopedSlots={formOption?.control?.slots} />
+            </template>
+          </Field>
         case 'slot':
-          if (formOption?.control?.slots?.default && typeof formOption?.control?.slots?.default === 'function') return formOption?.control?.slots.default?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })
-          if (this.$scopedSlots[formOption.formItem.prop]) return this.$scopedSlots[formOption.formItem.prop]?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.prop] })
-          return _attrs.model[formOption.formItem.prop]
-          break;
+          return <Field readonly inputAlign='right'
+            {...formOption.formItem}>
+            <template slot='label'>{formOption.formItem.label ?? ''}</template>
+            <template slot='input'>{
+              formOption?.control?.slots?.input && typeof formOption?.control?.slots?.input === 'function'
+                ? formOption?.control?.slots?.input?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.name] })
+                : this.$scopedSlots[formOption.formItem.name]
+                  ? this.$scopedSlots[formOption.formItem.name]?.({ form: _attrs.model, data: _attrs.model[formOption.formItem.name] })
+                  : _attrs.model[formOption.formItem.name]
+            }
+            </template>
+          </Field>
       }
-    }
-    const renderSearchItem = (_attrs) => {
-      return (
-        <div>
-          <ElButton type="primary" onClick={this.submit} icon="el-icon-search">搜索</ElButton>
-          <ElButton onClick={this.reset} icon="el-icon-refresh">重置</ElButton>
-          {_attrs.type === 'search' && _attrs.formOption.length > (this.column - 1)
-            ? <ElButton type="text" onClick={() => { this.setShow(!this.more) }} icon={this.more ? "el-icon-arrow-up" : "el-icon-arrow-down"}>{this.more ? '收起' : '展开'}</ElButton>
-            : ''
-          }
-        </div>
-      )
     }
     return (
       renderForm(this.$attrs)
