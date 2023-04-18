@@ -35,7 +35,7 @@ export default {
           ? ''
           : this.$scopedSlots?.default
             ? <div>{this.$scopedSlots.default()[0]}</div>
-            : <Button type="primary" onClick={this.submit}>提交</Button>
+            : <Button type="info" block onClick={this.submit}>提交</Button>
         }
       </Form>
     }
