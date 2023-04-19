@@ -15,3 +15,16 @@
     height: 24px;
   }
 }
+
+.FormGenerator .van-cell-group div .van-cell:after {
+  position: absolute;
+  box-sizing: border-box;
+  content: ' ';
+  pointer-events: none;
+  right: 16px;
+  bottom: 0;
+  left: 16px;
+  border-bottom: 1px solid #ebedf0;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+}

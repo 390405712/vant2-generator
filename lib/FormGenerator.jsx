@@ -17,6 +17,10 @@ export default {
       }
       return res
     },
+    submit: (...args) => this.$refs.FormGenerator.submit(...args),
+    validate: (...args) => this.$refs.FormGenerator.validate(...args),
+    resetValidation: (...args) => this.$refs.FormGenerator.resetValidation(...args),
+    scrollToField: (...args) => this.$refs.FormGenerator.scrollToField(...args),
   },
   render(h) {
     if (typeof window == "undefined") {
@@ -80,74 +84,80 @@ export default {
         case 'picker':
           return <div>
             {renderField(_attrs, formOption, true)}
-            <Popup lazy-render={false} v-model={formOption.showPopup} round position="bottom" {...this.getAttrAndEvent(formOption?.popup)}>
-              <Picker ref={formOption.formItem.name} show-toolbar v-model={_attrs.model[formOption.formItem.name]}
-                onCancel={() => { this.$set(formOption, 'showPopup', false) }}
-                onConfirm={(scope) => {
-                  this.$set(formOption, 'showPopup', false)
-                  if (Array.isArray(scope)) {
-                    const val = scope.reduce((arr, item) => {
-                      arr.push(typeof item === 'object' ? item?.[formOption?.control?.columnsFieldNames?.values ? formOption?.control?.columnsFieldNames?.values : 'value'] : item)
-                      return arr
-                    }, []);
-                    this.$set(_attrs.model, formOption.formItem.name, val)
-                    formOption.formItem.text = scope.map((item) => typeof item === 'object' ? item?.[formOption?.control?.columnsFieldNames?.text ? formOption?.control?.columnsFieldNames?.text : 'text'] : item).join('/');
-                  } else {
-                    this.$set(_attrs.model, formOption.formItem.name, scope[formOption?.control?.columnsFieldNames?.values ? formOption?.control?.columnsFieldNames?.values : 'value'])
-                    formOption.formItem.text = scope[formOption?.control?.columnsFieldNames?.text ? formOption?.control?.columnsFieldNames?.text : 'text'];
-                  }
-                }}
-                {...this.getAttrAndEvent(formOption?.control)}
-                scopedSlots={formOption?.control?.slots}
-              />
-            </Popup>
+            <div>
+              <Popup lazy-render={false} v-model={formOption.showPopup} round position="bottom" {...this.getAttrAndEvent(formOption?.popup)}>
+                <Picker ref={formOption.formItem.name} show-toolbar v-model={_attrs.model[formOption.formItem.name]}
+                  onCancel={() => { this.$set(formOption, 'showPopup', false) }}
+                  onConfirm={(scope) => {
+                    this.$set(formOption, 'showPopup', false)
+                    if (Array.isArray(scope)) {
+                      const val = scope.reduce((arr, item) => {
+                        arr.push(typeof item === 'object' ? item?.[formOption?.control?.columnsFieldNames?.values ? formOption?.control?.columnsFieldNames?.values : 'value'] : item)
+                        return arr
+                      }, []);
+                      this.$set(_attrs.model, formOption.formItem.name, val)
+                      formOption.formItem.text = scope.map((item) => typeof item === 'object' ? item?.[formOption?.control?.columnsFieldNames?.text ? formOption?.control?.columnsFieldNames?.text : 'text'] : item).join('/');
+                    } else {
+                      this.$set(_attrs.model, formOption.formItem.name, scope[formOption?.control?.columnsFieldNames?.values ? formOption?.control?.columnsFieldNames?.values : 'value'])
+                      formOption.formItem.text = scope[formOption?.control?.columnsFieldNames?.text ? formOption?.control?.columnsFieldNames?.text : 'text'];
+                    }
+                  }}
+                  {...this.getAttrAndEvent(formOption?.control)}
+                  scopedSlots={formOption?.control?.slots}
+                />
+              </Popup>
+            </div>
           </div>
           break;
         case 'cascader':
           return <div>
             {renderField(_attrs, formOption, true)}
-            <Popup v-model={formOption.showPopup} round position="bottom" {...this.getAttrAndEvent(formOption?.popup)}>
-              <Cascader ref={formOption.formItem.name} v-model={_attrs.model[formOption.formItem.name]}
-                onClose={() => { this.$set(formOption, 'showPopup', false) }}
-                onFinish={(scope) => {
-                  this.$set(formOption, 'showPopup', false)
-                  this.$set(_attrs.model, formOption.formItem.name, scope.value)
-                  formOption.formItem.text = scope.selectedOptions.map((item) => item[formOption?.control?.fieldNames?.text ? formOption?.control?.fieldNames?.text : 'text']).join('/');
-                }}
-                {...this.getAttrAndEvent(formOption?.control)}
-                scopedSlots={formOption?.control?.slots}
-              />
-            </Popup>
+            <div>
+              <Popup v-model={formOption.showPopup} round position="bottom" {...this.getAttrAndEvent(formOption?.popup)}>
+                <Cascader ref={formOption.formItem.name} v-model={_attrs.model[formOption.formItem.name]}
+                  onClose={() => { this.$set(formOption, 'showPopup', false) }}
+                  onFinish={(scope) => {
+                    this.$set(formOption, 'showPopup', false)
+                    this.$set(_attrs.model, formOption.formItem.name, scope.value)
+                    formOption.formItem.text = scope.selectedOptions.map((item) => item[formOption?.control?.fieldNames?.text ? formOption?.control?.fieldNames?.text : 'text']).join('/');
+                  }}
+                  {...this.getAttrAndEvent(formOption?.control)}
+                  scopedSlots={formOption?.control?.slots}
+                />
+              </Popup>
+            </div>
           </div>
         case 'calendar':
           return <div>
             {renderField(_attrs, formOption, formOption?.control?.type === 'multiple')}
-            <Calendar ref={formOption.formItem.name} v-model={formOption.showPopup}
-              show-confirm={formOption?.control?.type === 'multiple'}
-              onConfirm={(value) => {
-                this.$set(formOption, 'showPopup', false)
-                const formatDate = (date) => `${date?.getFullYear?.()}-${date?.getMonth?.() + 1}-${date?.getDate?.()}`
-                switch (formOption?.control?.type) {
-                  case 'multiple':
-                    const val = value.reduce((arr, item) => {
-                      arr.push(formatDate(item))
-                      return arr
-                    }, [])
-                    this.$set(_attrs.model, formOption.formItem.name, val)
-                    formOption.formItem.text = `选择了 ${value.length} 个日期`
-                    break;
-                  case 'range':
-                    this.$set(_attrs.model, formOption.formItem.name, `${formatDate(value[0])}~${formatDate(value[1])}`)
-                    break;
-                  default:
-                    this.$set(_attrs.model, formOption.formItem.name, formatDate(value))
-                    break;
-                }
-              }}
-              {...this.getAttrAndEvent(formOption?.control)}
-              scopedSlots={formOption?.control?.slots}
-            >
-            </Calendar>
+            <div>
+              <Calendar ref={formOption.formItem.name} v-model={formOption.showPopup}
+                show-confirm={formOption?.control?.type === 'multiple'}
+                onConfirm={(value) => {
+                  this.$set(formOption, 'showPopup', false)
+                  const formatDate = (date) => `${date?.getFullYear?.()}-${date?.getMonth?.() + 1}-${date?.getDate?.()}`
+                  switch (formOption?.control?.type) {
+                    case 'multiple':
+                      const val = value.reduce((arr, item) => {
+                        arr.push(formatDate(item))
+                        return arr
+                      }, [])
+                      this.$set(_attrs.model, formOption.formItem.name, val)
+                      formOption.formItem.text = `选择了 ${value.length} 个日期`
+                      break;
+                    case 'range':
+                      this.$set(_attrs.model, formOption.formItem.name, `${formatDate(value[0])}~${formatDate(value[1])}`)
+                      break;
+                    default:
+                      this.$set(_attrs.model, formOption.formItem.name, formatDate(value))
+                      break;
+                  }
+                }}
+                {...this.getAttrAndEvent(formOption?.control)}
+                scopedSlots={formOption?.control?.slots}
+              >
+              </Calendar>
+            </div>
           </div>
           break;
         case 'radio':
@@ -177,18 +187,20 @@ export default {
         case 'datetimePicker':
           return <div>
             {renderField(_attrs, formOption)}
-            <Popup v-model={formOption.showPopup} round position="bottom"  {...this.getAttrAndEvent(formOption?.popup)}>
-              <DatetimePicker ref={formOption.formItem.name}
-                onCancel={() => { this.$set(formOption, 'showPopup', false) }}
-                onConfirm={(scope) => {
-                  this.$set(formOption, 'showPopup', false)
-                  this.$set(_attrs.model, formOption.formItem.name, formatterDate(scope, formOption?.control?.type))
-                }}
-                {...this.getAttrAndEvent(formOption?.control)}
-                scopedSlots={formOption?.control?.slots}
-              >
-              </DatetimePicker>
-            </Popup>
+            <div>
+              <Popup v-model={formOption.showPopup} round position="bottom"  {...this.getAttrAndEvent(formOption?.popup)}>
+                <DatetimePicker ref={formOption.formItem.name}
+                  onCancel={() => { this.$set(formOption, 'showPopup', false) }}
+                  onConfirm={(scope) => {
+                    this.$set(formOption, 'showPopup', false)
+                    this.$set(_attrs.model, formOption.formItem.name, formatterDate(scope, formOption?.control?.type))
+                  }}
+                  {...this.getAttrAndEvent(formOption?.control)}
+                  scopedSlots={formOption?.control?.slots}
+                >
+                </DatetimePicker>
+              </Popup>
+            </div>
           </div>
           break;
         case 'switch':
