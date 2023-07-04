@@ -1,42 +1,42 @@
-(function(){ try {var elementStyle = document.createElement('style'); elementStyle.appendChild(document.createTextNode(".van-checkbox-group--horizontal,.van-radio-group--horizontal{gap:10px 0;justify-content:flex-end}.field-switch .van-field__right-icon{height:24px}.FormGenerator .van-cell-group div .van-cell:after{position:absolute;box-sizing:border-box;content:\" \";pointer-events:none;right:16px;bottom:0;left:16px;border-bottom:1px solid #ebedf0;-webkit-transform:scaleY(.5);transform:scaleY(.5)}")); document.head.appendChild(elementStyle);} catch(e) {console.error('vite-plugin-css-injected-by-js', e);} })();import { Form as Q, CellGroup as X, Button as Z, Field as w, Uploader as m, Switch as _, Popup as M, DatetimePicker as i, CheckboxGroup as f, Checkbox as p, RadioGroup as o, Radio as O, Calendar as ee, Cascader as le, Picker as se, Stepper as ae } from "vant";
-function N() {
-  return N = Object.assign ? Object.assign.bind() : function(s) {
-    for (var d, u = 1; u < arguments.length; u++)
-      for (var a in d = arguments[u], d)
-        Object.prototype.hasOwnProperty.call(d, a) && (s[a] = d[a]);
+(function(){ try {var elementStyle = document.createElement('style'); elementStyle.appendChild(document.createTextNode(".van-checkbox-group--horizontal,.van-radio-group--horizontal{gap:10px 0;justify-content:flex-end}.field-switch .van-field__right-icon{height:24px}.FormGenerator .van-cell-group div .van-cell:after{position:absolute;box-sizing:border-box;content:\" \";pointer-events:none;right:16px;bottom:0;left:16px;border-bottom:1px solid #ebedf0;-webkit-transform:scaleY(.5);transform:scaleY(.5)}")); document.head.appendChild(elementStyle);} catch(e) {console.error('vite-plugin-css-injected-by-js', e);} })();import { Form as ee, CellGroup as le, Button as se, Field as P, Uploader as ae, Switch as te, Popup as z, DatetimePicker as de, CheckboxGroup as ue, Checkbox as ce, RadioGroup as ge, Radio as he, Calendar as re, Cascader as ve, Picker as $e, Stepper as Ae } from "vant";
+function Y() {
+  return Y = Object.assign ? Object.assign.bind() : function(s) {
+    for (var d, c = 1; c < arguments.length; c++)
+      for (var t in d = arguments[c], d)
+        Object.prototype.hasOwnProperty.call(d, t) && (s[t] = d[t]);
     return s;
-  }, N.apply(this, arguments);
+  }, Y.apply(this, arguments);
 }
-var te = ["attrs", "props", "domProps"], de = ["class", "style", "directives"], ue = ["on", "nativeOn"], ce = function(s) {
-  return s.reduce(function(d, u) {
-    for (var a in u)
-      if (!d[a])
-        d[a] = u[a];
-      else if (te.indexOf(a) !== -1)
-        d[a] = N({}, d[a], u[a]);
-      else if (de.indexOf(a) !== -1) {
-        var n = d[a] instanceof Array ? d[a] : [d[a]], e = u[a] instanceof Array ? u[a] : [u[a]];
-        d[a] = [].concat(n, e);
-      } else if (ue.indexOf(a) !== -1)
-        for (var l in u[a])
-          if (d[a][l]) {
-            var g = d[a][l] instanceof Array ? d[a][l] : [d[a][l]], v = u[a][l] instanceof Array ? u[a][l] : [u[a][l]];
-            d[a][l] = [].concat(g, v);
+var Ie = ["attrs", "props", "domProps"], ye = ["class", "style", "directives"], xe = ["on", "nativeOn"], Se = function(s) {
+  return s.reduce(function(d, c) {
+    for (var t in c)
+      if (!d[t])
+        d[t] = c[t];
+      else if (Ie.indexOf(t) !== -1)
+        d[t] = Y({}, d[t], c[t]);
+      else if (ye.indexOf(t) !== -1) {
+        var w = d[t] instanceof Array ? d[t] : [d[t]], e = c[t] instanceof Array ? c[t] : [c[t]];
+        d[t] = [].concat(w, e);
+      } else if (xe.indexOf(t) !== -1)
+        for (var l in c[t])
+          if (d[t][l]) {
+            var r = d[t][l] instanceof Array ? d[t][l] : [d[t][l]], x = c[t][l] instanceof Array ? c[t][l] : [c[t][l]];
+            d[t][l] = [].concat(r, x);
           } else
-            d[a][l] = u[a][l];
-      else if (a === "hook")
-        for (var $ in u[a])
-          d[a][$] = d[a][$] ? re(d[a][$], u[a][$]) : u[a][$];
+            d[t][l] = c[t][l];
+      else if (t === "hook")
+        for (var S in c[t])
+          d[t][S] = d[t][S] ? ke(d[t][S], c[t][S]) : c[t][S];
       else
-        d[a] = u[a];
+        d[t] = c[t];
     return d;
   }, {});
-}, re = function(s, d) {
+}, ke = function(s, d) {
   return function() {
     s && s.apply(this, arguments), d && d.apply(this, arguments);
   };
-}, r = ce;
-const $e = {
+}, v = Se;
+const Pe = {
   name: "FormGenerator",
   methods: {
     getAttrAndEvent(s) {
@@ -44,8 +44,8 @@ const $e = {
         attrs: {},
         on: {}
       };
-      for (const u in s)
-        u.startsWith("on") && u.length > 2 ? d.on[u.substr(2).replace(/^\S/, (a) => a.toLowerCase())] = s[u] : d.attrs[u] = s[u];
+      for (const c in s)
+        c.startsWith("on") && c.length > 2 ? d.on[c.substr(2).replace(/^\S/, (t) => t.toLowerCase())] = s[c] : d.attrs[c] = s[c];
       return d;
     },
     submit: (...s) => globalThis.$refs.FormGenerator.submit(...s),
@@ -57,7 +57,7 @@ const $e = {
     typeof window > "u" ? global.h = this.$createElement : window.h = this.$createElement;
     const d = (e) => {
       var l;
-      return s(Q, {
+      return s(ee, {
         class: "FormGenerator",
         attrs: {
           ...e
@@ -66,22 +66,23 @@ const $e = {
           ...this.$listeners
         },
         ref: "FormGenerator"
-      }, [s(X, [e.formOption.map((g, v) => {
-        if (!(g.hasOwnProperty("show") && g.show === !1))
-          return n(g, e);
-      })]), e.disabled === !0 || !this.$listeners.submit ? "" : (l = this.$scopedSlots) != null && l.default ? s("div", [this.$scopedSlots.default()[0]]) : s(Z, {
+      }, [s(le, [e.formOption.map((r, x) => {
+        if (!(r.hasOwnProperty("show") && r.show === !1))
+          return w(r, e);
+      })]), e.disabled === !0 || !this.$listeners.submit ? "" : (l = this.$scopedSlots) != null && l.default ? s("div", [this.$scopedSlots.default()[0]]) : s(se, {
         attrs: {
           type: "info",
+          loading: e.loading,
           block: !0
         },
         on: {
           click: this.submit
         }
       }, ["提交"])]);
-    }, u = (e, l, g) => {
-      var $;
-      let v = g ? l.formItem.text : e.model[l.formItem.name];
-      return s(w, r([{
+    }, c = (e, l, r) => {
+      var S;
+      let x = r ? l.formItem.text : e.model[l.formItem.name];
+      return s(P, v([{
         attrs: {
           "is-link": !0,
           readonly: !0,
@@ -93,42 +94,61 @@ const $e = {
           }
         }
       }, this.getAttrAndEvent(l == null ? void 0 : l.formItem), {
-        scopedSlots: ($ = l == null ? void 0 : l.formItem) == null ? void 0 : $.slots,
+        scopedSlots: (S = l == null ? void 0 : l.formItem) == null ? void 0 : S.slots,
         model: {
-          value: v,
-          callback: (P) => {
-            v = P;
+          value: x,
+          callback: (C) => {
+            x = C;
           }
         }
       }]));
-    }, a = (e, l = "datetime") => {
-      let g;
+    }, t = (e, l = "datetime") => {
+      let r;
       switch (l) {
         case "date":
-          g = `${e.getFullYear()}-${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")}`;
+          r = `${e.getFullYear()}-${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")}`;
           break;
         case "datehour":
-          g = `${e.getFullYear()}-${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")} ${String(e.getHours()).padStart(2, "0")}`;
+          r = `${e.getFullYear()}-${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")} ${String(e.getHours()).padStart(2, "0")}`;
           break;
         case "year-month":
-          g = `${e.getFullYear()}-${String(e.getMonth() + 1).padStart(2, "0")}`;
+          r = `${e.getFullYear()}-${String(e.getMonth() + 1).padStart(2, "0")}`;
           break;
         case "month-day":
-          g = `${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")}`;
+          r = `${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")}`;
           break;
         case "time":
-          g = e;
+          r = e;
           break;
         case "datetime":
-          g = `${e.getFullYear()}-${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")} ${String(e.getHours()).padStart(2, "0")}:${String(e.getMinutes()).padStart(2, "0")}:${String(e.getSeconds()).padStart(2, "0")}`;
+          r = `${e.getFullYear()}-${String(e.getMonth() + 1).padStart(2, "0")}-${String(e.getDate()).padStart(2, "0")} ${String(e.getHours()).padStart(2, "0")}:${String(e.getMinutes()).padStart(2, "0")}:${String(e.getSeconds()).padStart(2, "0")}`;
           break;
       }
-      return g;
-    }, n = (e, l) => {
-      var g, v, $, P, D, j, C, T, z, Y, R, q, H, G, U, V, B;
+      return r;
+    }, w = (e, l) => {
+      var x, S, C, R, q, H, U, V, B, J, K, L, W, Q, X, Z, n, F, N, _, m, i, T, f, p, o;
+      function r(a, h, u, g = !1) {
+        var $;
+        if (!Array.isArray(a))
+          return "";
+        for (let A = 0; A < a.length; A++) {
+          const I = a[A];
+          if (typeof I == "string") {
+            if (I === h)
+              return I[(u == null ? void 0 : u.text) ?? "text"] || "";
+          } else if (I[(u == null ? void 0 : u.values) ?? (u == null ? void 0 : u.value) ?? "value"] === h)
+            return I[(u == null ? void 0 : u.text) ?? "text"] || "";
+          if (($ = I[(u == null ? void 0 : u.children) ?? "children"]) != null && $.length) {
+            const b = r(I[(u == null ? void 0 : u.children) ?? "children"], h, u, g);
+            if (b)
+              return g ? `${I[(u == null ? void 0 : u.text) ?? "text"]}/${b}` : b;
+          }
+        }
+        return null;
+      }
       switch (e.type) {
         case "field":
-          return s(w, r([{
+          return s(P, v([{
             ref: e.formItem.name,
             attrs: {
               inputAlign: "right"
@@ -137,22 +157,22 @@ const $e = {
             ...e.formItem,
             ...e.control
           }), {
-            scopedSlots: (g = e == null ? void 0 : e.control) == null ? void 0 : g.slots,
+            scopedSlots: (x = e == null ? void 0 : e.control) == null ? void 0 : x.slots,
             model: {
               value: l.model[e.formItem.name],
-              callback: (t) => {
-                this.$set(l.model, e.formItem.name, t);
+              callback: (a) => {
+                this.$set(l.model, e.formItem.name, a);
               }
             }
           }]));
         case "stepper":
-          return s(w, r([{
+          return s(P, v([{
             attrs: {
               readonly: !0
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.formItem)]), [s("template", {
             slot: "right-icon"
-          }, [s(ae, r([{
+          }, [s(Ae, v([{
             ref: e.formItem.name,
             attrs: {
               disabled: l.disabled,
@@ -161,13 +181,25 @@ const $e = {
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
               value: l.model[e.formItem.name],
-              callback: (t) => {
-                this.$set(l.model, e.formItem.name, t);
+              callback: (a) => {
+                this.$set(l.model, e.formItem.name, a);
               }
             }
           }]))])]);
         case "picker":
-          return s("div", [u(l, e, !0), s("div", [s(M, r([{
+          return !e.formItem.hasOwnProperty("text") && l.model[e.formItem.name] && ((S = e == null ? void 0 : e.control) != null && S.columns) && (Array.isArray((q = (R = (C = e == null ? void 0 : e.control) == null ? void 0 : C.columns) == null ? void 0 : R[0]) == null ? void 0 : q.values) ? e.formItem.text = (H = e == null ? void 0 : e.control) == null ? void 0 : H.columns.reduce((a, h, u) => {
+            var g, $, A, I, b, G;
+            return typeof ((g = h == null ? void 0 : h.values) == null ? void 0 : g[0]) == "string" ? a.push(($ = h.values) == null ? void 0 : $.find((M) => {
+              var y;
+              return M === ((y = l.model[e.formItem.name]) == null ? void 0 : y[u]);
+            })) : a.push((G = (A = h.values) == null ? void 0 : A.find((M) => {
+              var y, k, E;
+              return M[((k = (y = e == null ? void 0 : e.control) == null ? void 0 : y.columnsFieldNames) == null ? void 0 : k.values) ?? "value"] === ((E = l.model[e.formItem.name]) == null ? void 0 : E[u]);
+            })) == null ? void 0 : G[((b = (I = e == null ? void 0 : e.control) == null ? void 0 : I.columnsFieldNames) == null ? void 0 : b.text) ?? "text"]), a;
+          }, []).join("/") : Array.isArray(l.model[e.formItem.name]) ? e.formItem.text = l.model[e.formItem.name].reduce((a, h) => {
+            var u, g;
+            return a.push(r((u = e == null ? void 0 : e.control) == null ? void 0 : u.columns, h, (g = e == null ? void 0 : e.control) == null ? void 0 : g.columnsFieldNames)), a;
+          }, []).join("/") : e.formItem.text = r((U = e == null ? void 0 : e.control) == null ? void 0 : U.columns, l.model[e.formItem.name], (V = e == null ? void 0 : e.control) == null ? void 0 : V.columnsFieldNames)), s("div", [c(l, e, !0), s("div", [s(z, v([{
             attrs: {
               "lazy-render": !1,
               round: !0,
@@ -176,11 +208,11 @@ const $e = {
           }, this.getAttrAndEvent(e == null ? void 0 : e.popup), {
             model: {
               value: e.showPopup,
-              callback: (t) => {
-                this.$set(e, "showPopup", t);
+              callback: (a) => {
+                this.$set(e, "showPopup", a);
               }
             }
-          }]), [s(se, r([{
+          }]), [s($e, v([{
             ref: e.formItem.name,
             attrs: {
               "show-toolbar": !0
@@ -189,32 +221,32 @@ const $e = {
               cancel: () => {
                 this.$set(e, "showPopup", !1);
               },
-              confirm: (t) => {
-                var h, S, c, A, I, b, J, K;
-                if (this.$set(e, "showPopup", !1), Array.isArray(t)) {
-                  const W = t.reduce((y, k) => {
-                    var x, F, E, L;
-                    return y.push(typeof k == "object" ? k == null ? void 0 : k[(F = (x = e == null ? void 0 : e.control) == null ? void 0 : x.columnsFieldNames) != null && F.values ? (L = (E = e == null ? void 0 : e.control) == null ? void 0 : E.columnsFieldNames) == null ? void 0 : L.values : "value"] : k), y;
+              confirm: (a) => {
+                var h, u, g, $, A, I, b, G;
+                if (this.$set(e, "showPopup", !1), Array.isArray(a)) {
+                  const M = a.reduce((y, k) => {
+                    var E, j, D, O;
+                    return y.push(typeof k == "object" ? k == null ? void 0 : k[(j = (E = e == null ? void 0 : e.control) == null ? void 0 : E.columnsFieldNames) != null && j.values ? (O = (D = e == null ? void 0 : e.control) == null ? void 0 : D.columnsFieldNames) == null ? void 0 : O.values : "value"] : k), y;
                   }, []);
-                  this.$set(l.model, e.formItem.name, W), e.formItem.text = t.map((y) => {
-                    var k, x, F, E;
-                    return typeof y == "object" ? y == null ? void 0 : y[(x = (k = e == null ? void 0 : e.control) == null ? void 0 : k.columnsFieldNames) != null && x.text ? (E = (F = e == null ? void 0 : e.control) == null ? void 0 : F.columnsFieldNames) == null ? void 0 : E.text : "text"] : y;
+                  this.$set(l.model, e.formItem.name, M), e.formItem.text = a.map((y) => {
+                    var k, E, j, D;
+                    return typeof y == "object" ? y == null ? void 0 : y[(E = (k = e == null ? void 0 : e.control) == null ? void 0 : k.columnsFieldNames) != null && E.text ? (D = (j = e == null ? void 0 : e.control) == null ? void 0 : j.columnsFieldNames) == null ? void 0 : D.text : "text"] : y;
                   }).join("/");
                 } else
-                  this.$set(l.model, e.formItem.name, t[(S = (h = e == null ? void 0 : e.control) == null ? void 0 : h.columnsFieldNames) != null && S.values ? (A = (c = e == null ? void 0 : e.control) == null ? void 0 : c.columnsFieldNames) == null ? void 0 : A.values : "value"]), e.formItem.text = t[(b = (I = e == null ? void 0 : e.control) == null ? void 0 : I.columnsFieldNames) != null && b.text ? (K = (J = e == null ? void 0 : e.control) == null ? void 0 : J.columnsFieldNames) == null ? void 0 : K.text : "text"];
+                  this.$set(l.model, e.formItem.name, a[(u = (h = e == null ? void 0 : e.control) == null ? void 0 : h.columnsFieldNames) != null && u.values ? ($ = (g = e == null ? void 0 : e.control) == null ? void 0 : g.columnsFieldNames) == null ? void 0 : $.values : "value"]), e.formItem.text = a[(I = (A = e == null ? void 0 : e.control) == null ? void 0 : A.columnsFieldNames) != null && I.text ? (G = (b = e == null ? void 0 : e.control) == null ? void 0 : b.columnsFieldNames) == null ? void 0 : G.text : "text"];
               }
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
-            scopedSlots: (v = e == null ? void 0 : e.control) == null ? void 0 : v.slots,
+            scopedSlots: (B = e == null ? void 0 : e.control) == null ? void 0 : B.slots,
             model: {
               value: l.model[e.formItem.name],
-              callback: (t) => {
-                this.$set(l.model, e.formItem.name, t);
+              callback: (a) => {
+                this.$set(l.model, e.formItem.name, a);
               }
             }
           }]))])])]);
         case "cascader":
-          return s("div", [u(l, e, !0), s("div", [s(M, r([{
+          return l.model[e.formItem.name] && (e.formItem.text = r((J = e == null ? void 0 : e.control) == null ? void 0 : J.options, l.model[e.formItem.name], (K = e == null ? void 0 : e.control) == null ? void 0 : K.fieldNames, !0)), s("div", [c(l, e, !0), s("div", [s(z, v([{
             attrs: {
               round: !0,
               position: "bottom"
@@ -222,77 +254,77 @@ const $e = {
           }, this.getAttrAndEvent(e == null ? void 0 : e.popup), {
             model: {
               value: e.showPopup,
-              callback: (t) => {
-                this.$set(e, "showPopup", t);
+              callback: (a) => {
+                this.$set(e, "showPopup", a);
               }
             }
-          }]), [s(le, r([{
+          }]), [s(ve, v([{
             ref: e.formItem.name,
             on: {
               close: () => {
                 this.$set(e, "showPopup", !1);
               },
-              finish: (t) => {
-                this.$set(e, "showPopup", !1), this.$set(l.model, e.formItem.name, t.value), e.formItem.text = t.selectedOptions.map((h) => {
-                  var S, c, A, I;
-                  return h[(c = (S = e == null ? void 0 : e.control) == null ? void 0 : S.fieldNames) != null && c.text ? (I = (A = e == null ? void 0 : e.control) == null ? void 0 : A.fieldNames) == null ? void 0 : I.text : "text"];
+              finish: (a) => {
+                this.$set(e, "showPopup", !1), this.$set(l.model, e.formItem.name, a.value), e.formItem.text = a.selectedOptions.map((h) => {
+                  var u, g, $, A;
+                  return h[(g = (u = e == null ? void 0 : e.control) == null ? void 0 : u.fieldNames) != null && g.text ? (A = ($ = e == null ? void 0 : e.control) == null ? void 0 : $.fieldNames) == null ? void 0 : A.text : "text"];
                 }).join("/");
               }
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
-            scopedSlots: ($ = e == null ? void 0 : e.control) == null ? void 0 : $.slots,
+            scopedSlots: (L = e == null ? void 0 : e.control) == null ? void 0 : L.slots,
             model: {
               value: l.model[e.formItem.name],
-              callback: (t) => {
-                this.$set(l.model, e.formItem.name, t);
+              callback: (a) => {
+                this.$set(l.model, e.formItem.name, a);
               }
             }
           }]))])])]);
         case "calendar":
-          return s("div", [u(l, e, ((P = e == null ? void 0 : e.control) == null ? void 0 : P.type) === "multiple"), s("div", [s(ee, r([{
+          return s("div", [c(l, e, ((W = e == null ? void 0 : e.control) == null ? void 0 : W.type) === "multiple"), s("div", [s(re, v([{
             ref: e.formItem.name,
             attrs: {
-              "show-confirm": ((D = e == null ? void 0 : e.control) == null ? void 0 : D.type) === "multiple"
+              "show-confirm": ((Q = e == null ? void 0 : e.control) == null ? void 0 : Q.type) === "multiple"
             },
             on: {
-              confirm: (t) => {
-                var S;
+              confirm: (a) => {
+                var u;
                 this.$set(e, "showPopup", !1);
-                const h = (c) => {
-                  var A, I, b;
-                  return `${(A = c == null ? void 0 : c.getFullYear) == null ? void 0 : A.call(c)}-${((I = c == null ? void 0 : c.getMonth) == null ? void 0 : I.call(c)) + 1}-${(b = c == null ? void 0 : c.getDate) == null ? void 0 : b.call(c)}`;
+                const h = (g) => {
+                  var $, A, I;
+                  return `${($ = g == null ? void 0 : g.getFullYear) == null ? void 0 : $.call(g)}-${((A = g == null ? void 0 : g.getMonth) == null ? void 0 : A.call(g)) + 1}-${(I = g == null ? void 0 : g.getDate) == null ? void 0 : I.call(g)}`;
                 };
-                switch ((S = e == null ? void 0 : e.control) == null ? void 0 : S.type) {
+                switch ((u = e == null ? void 0 : e.control) == null ? void 0 : u.type) {
                   case "multiple":
-                    const c = t.reduce((A, I) => (A.push(h(I)), A), []);
-                    this.$set(l.model, e.formItem.name, c), e.formItem.text = `选择了 ${t.length} 个日期`;
+                    const g = a.reduce(($, A) => ($.push(h(A)), $), []);
+                    this.$set(l.model, e.formItem.name, g), e.formItem.text = `选择了 ${a.length} 个日期`;
                     break;
                   case "range":
-                    this.$set(l.model, e.formItem.name, `${h(t[0])}~${h(t[1])}`);
+                    this.$set(l.model, e.formItem.name, `${h(a[0])}~${h(a[1])}`);
                     break;
                   default:
-                    this.$set(l.model, e.formItem.name, h(t));
+                    this.$set(l.model, e.formItem.name, h(a));
                     break;
                 }
               }
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
-            scopedSlots: (j = e == null ? void 0 : e.control) == null ? void 0 : j.slots,
+            scopedSlots: (X = e == null ? void 0 : e.control) == null ? void 0 : X.slots,
             model: {
               value: e.showPopup,
-              callback: (t) => {
-                this.$set(e, "showPopup", t);
+              callback: (a) => {
+                this.$set(e, "showPopup", a);
               }
             }
           }]))])]);
         case "radio":
-          return s(w, r([{
+          return s(P, v([{
             attrs: {
               inputAlign: "right"
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.formItem)]), [s("template", {
             slot: "input"
-          }, [s(o, r([{
+          }, [s(ge, v([{
             ref: e.formItem.name,
             attrs: {
               disabled: l.disabled,
@@ -301,25 +333,25 @@ const $e = {
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
               value: l.model[e.formItem.name],
-              callback: (t) => {
-                this.$set(l.model, e.formItem.name, t);
+              callback: (a) => {
+                this.$set(l.model, e.formItem.name, a);
               }
             }
-          }]), [e.control.radioGroup.map((t) => s(O, r([{
+          }]), [e.control.radioGroup.map((a) => s(he, v([{
             attrs: {
-              name: t.value
+              name: a.value
             }
-          }, this.getAttrAndEvent(t), {
-            scopedSlots: t == null ? void 0 : t.slots
-          }]), [t.label]))])])]);
+          }, this.getAttrAndEvent(a), {
+            scopedSlots: a == null ? void 0 : a.slots
+          }]), [a.label]))])])]);
         case "checkbox":
-          return s(w, r([{
+          return s(P, v([{
             attrs: {
               inputAlign: "right"
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.formItem)]), [s("template", {
             slot: "input"
-          }, [s(f, r([{
+          }, [s(ue, v([{
             ref: e.formItem.name,
             attrs: {
               disabled: l.disabled,
@@ -328,19 +360,19 @@ const $e = {
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
               value: l.model[e.formItem.name],
-              callback: (t) => {
-                this.$set(l.model, e.formItem.name, t);
+              callback: (a) => {
+                this.$set(l.model, e.formItem.name, a);
               }
             }
-          }]), [e.control.checkboxGroup.map((t) => s(p, r([{
+          }]), [e.control.checkboxGroup.map((a) => s(ce, v([{
             attrs: {
-              name: t.value
+              name: a.value
             }
-          }, this.getAttrAndEvent(t), {
-            scopedSlots: t == null ? void 0 : t.slots
-          }]), [t.label]))])])]);
+          }, this.getAttrAndEvent(a), {
+            scopedSlots: a == null ? void 0 : a.slots
+          }]), [a.label]))])])]);
         case "datetimePicker":
-          return s("div", [u(l, e), s("div", [s(M, r([{
+          return s("div", [c(l, e), s("div", [s(z, v([{
             attrs: {
               round: !0,
               position: "bottom"
@@ -348,33 +380,33 @@ const $e = {
           }, this.getAttrAndEvent(e == null ? void 0 : e.popup), {
             model: {
               value: e.showPopup,
-              callback: (t) => {
-                this.$set(e, "showPopup", t);
+              callback: (a) => {
+                this.$set(e, "showPopup", a);
               }
             }
-          }]), [s(i, r([{
+          }]), [s(de, v([{
             ref: e.formItem.name,
             on: {
               cancel: () => {
                 this.$set(e, "showPopup", !1);
               },
-              confirm: (t) => {
+              confirm: (a) => {
                 var h;
-                this.$set(e, "showPopup", !1), this.$set(l.model, e.formItem.name, a(t, (h = e == null ? void 0 : e.control) == null ? void 0 : h.type));
+                this.$set(e, "showPopup", !1), this.$set(l.model, e.formItem.name, t(a, (h = e == null ? void 0 : e.control) == null ? void 0 : h.type));
               }
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
-            scopedSlots: (C = e == null ? void 0 : e.control) == null ? void 0 : C.slots
+            scopedSlots: (Z = e == null ? void 0 : e.control) == null ? void 0 : Z.slots
           }]))])])]);
         case "switch":
-          return s(w, r([{
+          return s(P, v([{
             class: "field-switch",
             attrs: {
               readonly: !0
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.formItem)]), [s("template", {
             slot: "right-icon"
-          }, [s(_, r([{
+          }, [s(te, v([{
             ref: e.formItem.name,
             attrs: {
               disabled: l.disabled,
@@ -383,35 +415,35 @@ const $e = {
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
             model: {
               value: l.model[e.formItem.name],
-              callback: (t) => {
-                this.$set(l.model, e.formItem.name, t);
+              callback: (a) => {
+                this.$set(l.model, e.formItem.name, a);
               }
             }
           }]))])]);
         case "uploader":
-          return s(w, r([{
+          return s(P, v([{
             attrs: {
               readonly: !0,
               inputAlign: "right"
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.formItem)]), [s("template", {
             slot: "input"
-          }, [s(m, r([{
+          }, [s(ae, v([{
             ref: e.formItem.name,
             attrs: {
               disabled: l.disabled
             }
           }, this.getAttrAndEvent(e == null ? void 0 : e.control), {
-            scopedSlots: (T = e == null ? void 0 : e.control) == null ? void 0 : T.slots,
+            scopedSlots: (n = e == null ? void 0 : e.control) == null ? void 0 : n.slots,
             model: {
               value: l.model[e.formItem.name],
-              callback: (t) => {
-                this.$set(l.model, e.formItem.name, t);
+              callback: (a) => {
+                this.$set(l.model, e.formItem.name, a);
               }
             }
           }]))])]);
         case "slot":
-          return s(w, r([{
+          return s(P, v([{
             attrs: {
               readonly: !0,
               inputAlign: "right"
@@ -420,10 +452,10 @@ const $e = {
             slot: "label"
           }, [e.formItem.label ? e.formItem.label : ""]), s("template", {
             slot: "input"
-          }, [(Y = (z = e == null ? void 0 : e.control) == null ? void 0 : z.slots) != null && Y.input && typeof ((q = (R = e == null ? void 0 : e.control) == null ? void 0 : R.slots) == null ? void 0 : q.input) == "function" ? (U = (G = (H = e == null ? void 0 : e.control) == null ? void 0 : H.slots) == null ? void 0 : G.input) == null ? void 0 : U.call(G, {
+          }, [(N = (F = e == null ? void 0 : e.control) == null ? void 0 : F.slots) != null && N.input && typeof ((m = (_ = e == null ? void 0 : e.control) == null ? void 0 : _.slots) == null ? void 0 : m.input) == "function" ? (f = (T = (i = e == null ? void 0 : e.control) == null ? void 0 : i.slots) == null ? void 0 : T.input) == null ? void 0 : f.call(T, {
             form: l.model,
             data: l.model[e.formItem.name]
-          }) : this.$scopedSlots[e.formItem.name] ? (B = (V = this.$scopedSlots)[e.formItem.name]) == null ? void 0 : B.call(V, {
+          }) : this.$scopedSlots[e.formItem.name] ? (o = (p = this.$scopedSlots)[e.formItem.name]) == null ? void 0 : o.call(p, {
             form: l.model,
             data: l.model[e.formItem.name]
           }) : l.model[e.formItem.name]])]);
@@ -431,22 +463,22 @@ const $e = {
     };
     return d(this.$attrs);
   }
-}, ge = (s, d, u, a) => {
+}, we = (s, d, c, t) => {
   if (!Array.isArray(s))
     return [];
-  const n = [];
+  const w = [];
   let e = [];
-  return a && (e = Object.keys(a)), s.forEach((l) => {
-    let g = {
+  return t && (e = Object.keys(t)), s.forEach((l) => {
+    let r = {
       label: typeof l == "string" ? l : l[d],
-      value: typeof l == "string" ? l : l[u]
+      value: typeof l == "string" ? l : l[c]
     };
-    a && e.forEach((v) => {
-      g[v] = l[v];
-    }), n.push(g);
-  }), n;
-}, he = (s, d = []) => {
-  const u = {
+    t && e.forEach((x) => {
+      r[x] = l[x];
+    }), w.push(r);
+  }), w;
+}, be = (s, d = []) => {
+  const c = {
     field: "输入",
     stepper: "输入",
     picker: "选择",
@@ -459,23 +491,23 @@ const $e = {
     uploader: "上传",
     slot: ""
   };
-  return s.forEach((a) => {
-    const n = { required: !0, message: `请${u[a.type] || "完善"}${a.formItem.label || ""}`, trigger: "onChange" };
-    if (!d.includes(a.formItem.name) && (a.formItem.required = !0, !["stepper", "switch"].includes(a.type))) {
-      a.formItem.rules ? a.formItem.rules.unshift(n) : a.formItem.rules = [n];
-      for (let e = 0; e < a.formItem.rules.length; e++) {
-        let l = a.formItem.rules[e];
+  return s.forEach((t) => {
+    const w = { required: !0, message: `请${c[t.type] || "完善"}${t.formItem.label || ""}`, trigger: "onChange" };
+    if (!d.includes(t.formItem.name) && (t.formItem.required = !0, !["stepper", "switch"].includes(t.type))) {
+      t.formItem.rules ? t.formItem.rules.unshift(w) : t.formItem.rules = [w];
+      for (let e = 0; e < t.formItem.rules.length; e++) {
+        let l = t.formItem.rules[e];
         l.message || (l.message = "格式有误");
       }
     }
   }), s;
-}, Ae = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}, Ge = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getOption: ge,
-  setRequired: he
+  getOption: we,
+  setRequired: be
 }, Symbol.toStringTag, { value: "Module" }));
 export {
-  $e as FormGenerator,
-  Ae as GeneratorUtils
+  Pe as FormGenerator,
+  Ge as GeneratorUtils
 };
 //# sourceMappingURL=index.js.map

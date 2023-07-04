@@ -39,7 +39,7 @@ export default {
           ? ''
           : this.$scopedSlots?.default
             ? <div>{this.$scopedSlots.default()[0]}</div>
-            : <Button type="info" block onClick={this.submit}>提交</Button>
+            : <Button type="info" loading={_attrs.loading} block onClick={this.submit}>提交</Button>
         }
       </Form>
     }
@@ -72,6 +72,25 @@ export default {
       return val
     }
     const renderControl = (formOption, _attrs) => {
+      function getText(arr, val, columnsFieldNames, splice = false) {
+        if (!Array.isArray(arr)) return ''
+        for (let index = 0; index < arr.length; index++) {
+          const item = arr[index];
+          if (typeof item === 'string') {
+            if (item === val) return item[columnsFieldNames?.text ?? 'text'] || ''
+          } else {
+            if (item[columnsFieldNames?.values ?? columnsFieldNames?.value ?? 'value'] === val) return item[columnsFieldNames?.text ?? 'text'] || ''
+          }
+          if (item[columnsFieldNames?.children ?? 'children']?.length) {
+            const text = getText(item[columnsFieldNames?.children ?? 'children'], val, columnsFieldNames,splice)
+            if (text) {
+              if (splice) return `${item[columnsFieldNames?.text ?? 'text']}/${text}`
+              return text
+            }
+          }
+        }
+        return null;
+      }
       switch (formOption.type) {
         case 'field':
           return <Field ref={formOption.formItem.name} inputAlign='right' {...this.getAttrAndEvent({ ...formOption.formItem, ...formOption.control })} v-model={_attrs.model[formOption.formItem.name]} scopedSlots={formOption?.control?.slots} />
@@ -82,6 +101,25 @@ export default {
             </template>
           </Field>
         case 'picker':
+          if (!formOption.formItem.hasOwnProperty('text') && _attrs.model[formOption.formItem.name] && formOption?.control?.columns) {
+            if (Array.isArray(formOption?.control?.columns?.[0]?.values)) {
+              formOption.formItem.text = formOption?.control?.columns.reduce((arr, item, index) => {
+                if (typeof item?.values?.[0] === 'string') {
+                  arr.push(item.values?.find(i => i === _attrs.model[formOption.formItem.name]?.[index]))
+                } else {
+                  arr.push(item.values?.find(i => i[formOption?.control?.columnsFieldNames?.values ?? 'value'] === _attrs.model[formOption.formItem.name]?.[index])?.[formOption?.control?.columnsFieldNames?.text ?? 'text'])
+                }
+                return arr
+              }, []).join('/')
+            } else if (Array.isArray(_attrs.model[formOption.formItem.name])) {
+              formOption.formItem.text = _attrs.model[formOption.formItem.name].reduce((arr, item) => {
+                arr.push(getText(formOption?.control?.columns, item, formOption?.control?.columnsFieldNames))
+                return arr
+              }, []).join('/')
+            } else {
+              formOption.formItem.text = getText(formOption?.control?.columns, _attrs.model[formOption.formItem.name], formOption?.control?.columnsFieldNames)
+            }
+          }
           return <div>
             {renderField(_attrs, formOption, true)}
             <div>
@@ -110,6 +148,9 @@ export default {
           </div>
           break;
         case 'cascader':
+          if (_attrs.model[formOption.formItem.name]) {
+            formOption.formItem.text = getText(formOption?.control?.options, _attrs.model[formOption.formItem.name], formOption?.control?.fieldNames, true)
+          }
           return <div>
             {renderField(_attrs, formOption, true)}
             <div>

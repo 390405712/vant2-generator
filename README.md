@@ -1,4 +1,4 @@
-# 基于vant2封装的表格、表单生成器
+# 基于vant2封装的表单生成器
 
 使用文档：[vant2-generator](https://qq390405712.gitee.io/vant2-generator-docs)
 
