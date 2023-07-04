@@ -77,14 +77,14 @@ export default {
         for (let index = 0; index < arr.length; index++) {
           const item = arr[index];
           if (typeof item === 'string') {
-            if (item === val) return item[columnsFieldNames?.text ?? 'text'] || ''
+            if (item === val) return item[columnsFieldNames?.text ? columnsFieldNames?.text : 'text'] || ''
           } else {
-            if (item[columnsFieldNames?.values ?? columnsFieldNames?.value ?? 'value'] === val) return item[columnsFieldNames?.text ?? 'text'] || ''
+            if (item[columnsFieldNames?.values ? columnsFieldNames?.values : columnsFieldNames?.value ? columnsFieldNames?.value : 'value'] === val) return item[columnsFieldNames?.text ? columnsFieldNames?.text : 'text'] || ''
           }
-          if (item[columnsFieldNames?.children ?? 'children']?.length) {
-            const text = getText(item[columnsFieldNames?.children ?? 'children'], val, columnsFieldNames,splice)
+          if (item[columnsFieldNames?.children ? columnsFieldNames?.children : 'children']?.length) {
+            const text = getText(item[columnsFieldNames?.children ? columnsFieldNames?.children : 'children'], val, columnsFieldNames, splice)
             if (text) {
-              if (splice) return `${item[columnsFieldNames?.text ?? 'text']}/${text}`
+              if (splice) return `${item[columnsFieldNames?.text ? columnsFieldNames?.text : 'text']}/${text}`
               return text
             }
           }
@@ -107,7 +107,7 @@ export default {
                 if (typeof item?.values?.[0] === 'string') {
                   arr.push(item.values?.find(i => i === _attrs.model[formOption.formItem.name]?.[index]))
                 } else {
-                  arr.push(item.values?.find(i => i[formOption?.control?.columnsFieldNames?.values ?? 'value'] === _attrs.model[formOption.formItem.name]?.[index])?.[formOption?.control?.columnsFieldNames?.text ?? 'text'])
+                  arr.push(item.values?.find(i => i[formOption?.control?.columnsFieldNames?.values ? formOption?.control?.columnsFieldNames?.values : 'value'] === _attrs.model[formOption.formItem.name]?.[index])?.[formOption?.control?.columnsFieldNames?.text ? formOption?.control?.columnsFieldNames?.text : 'text'])
                 }
                 return arr
               }, []).join('/')
